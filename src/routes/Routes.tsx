@@ -70,7 +70,10 @@ export function Router () {
             </AuthenticationGuard>
           }
         />
-        <Route path="/edit/:id" element={<EditPetPage />} />
+        <Route path="/edit/:id" element={
+          <AuthenticationGuard>
+            <EditPetPage />
+          </AuthenticationGuard>} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,10 +1,9 @@
-import { FunctionComponent, useEffect, useState } from 'react';
-import { collection, getDocs, query, where } from 'firebase/firestore';
+import { FunctionComponent, useEffect} from 'react';
 
-import { db } from '../../config/firebase.config';
-import {  petsConverter } from '../../converters/firestore.converters';
-
-import Pets from '../../models/pets.types';
+import { PetsContext } from '../../contexts/pets.context';
+import { useContext } from 'react';
+import { PetItem } from '../PetItem';
+import { Loading } from '../Loading';
 
 interface PetEditProps {
   petId: string
@@ -13,38 +12,22 @@ interface PetEditProps {
 export const PetEdit: FunctionComponent<PetEditProps> = ({
   petId
 }) => {
-  const [pet, setPet] = useState<Pets | null>(null);
+  const { editPet, pets } = useContext(PetsContext);
 
   console.log(petId);
-
   useEffect(() => {
-    const fetchPet = async () => {
-      try {
-        console.log('deu certo');
-        const querySnapshot = await getDocs(
-          query(
-            collection(db, 'petshop').withConverter(petsConverter),
-            where('id', '==', petId)
-          )
-        );
+    editPet(petId);
+  }, [editPet]);
 
-        const pet = querySnapshot.docs[0]?.data();
-
-        setPet(pet);
-      } catch (error) {
-        console.log('deu errado');
-      } finally {
-        console.log('finalizou');
-      }
-    };
-
-    fetchPet();
-  }, []);
 
 
   return (
     <>
-      <p style={{color: 'red'}}>{pet?.age}</p>
+      {pets.map((pet) => (
+        <div key={pet.id}>
+          <PetItem data={pet} />
+        </div>
+      ))}
     </>
   );
 };
