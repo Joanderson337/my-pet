@@ -5,9 +5,26 @@ interface PetImageProps {
 }
 
 export const PetContainer = styled.div`
-  display: flex;
-  width: 100%;
-  background-color: #F8F8FF;
+    display: flex;
+    flex-direction: column;
+`;
+
+
+export const DeletePet = styled.button`
+      position: absolute;
+      background: transparent;
+      margin: 10px;
+`;
+
+export const EditPet = styled.button`
+      position: absolute;
+      background: transparent;
+      margin: 8px 10px 0 170px;
+
+`;
+
+export const Info = styled.button`
+      border-radius: 0 0 10px 10px;
 `;
 
 export const PetInfo = styled.div`
@@ -35,7 +52,7 @@ export const DonoInfo = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2px;
-  align-items: flex-end;
+  align-items: flex-start;
   font-weight: bold;
  margin: 10px;
 
@@ -55,13 +72,15 @@ export const DonoInfo = styled.div`
 
 export const PetImage = styled.button<PetImageProps>`
 
+
+
   background-image: ${(props) => `url('${props.imageUrl}')`};
-  height: 380px;
-  width: 300px;
+  height: 28rem;
+  width: 20rem;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  border-radius: 10px;
+  border-radius: 10px 10px  0 0;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   display: flex;
   align-items: flex-end;

@@ -1,7 +1,8 @@
 import { useContext } from 'react';
+import { Icon } from '../../assets/Icon';
 import { PetsContext } from '../../contexts/pets.context';
 import Pets from '../../models/pets.types';
-import { DonoInfo, PetContainer, PetImage, PetInfo } from './styled';
+import { DeletePet, DonoInfo, EditPet, Info, PetContainer, PetImage, PetInfo } from './styled';
 interface PetsItemProps {
   data: Pets
 }
@@ -11,9 +12,15 @@ export function PetItem ({ data } : PetsItemProps) {
 
   return (
     <>
-      <button onClick={() => deletePet(data.id)}>deleta</button>
-      <PetImage imageUrl={data.imageUrl}>
-        <PetContainer>
+      <PetContainer>
+        <PetImage imageUrl={data.imageUrl} />
+        <DeletePet onClick={() => deletePet(data.id)}>
+          <Icon name='remove' size={18}/>
+        </DeletePet>
+        <EditPet>
+          <Icon name='edit' size={18}/>
+        </EditPet>
+        <Info>
           <PetInfo>
             <strong>Informações do Pet:</strong>
             <p>Nome: {data.name}</p>
@@ -26,8 +33,8 @@ export function PetItem ({ data } : PetsItemProps) {
             <p>Nome: {data.nameDono}</p>
             <p>Fone: {data.telephoneDono}</p>
           </DonoInfo>
-        </PetContainer>
-      </PetImage>
+        </Info>
+      </PetContainer>
     </>
 
   );

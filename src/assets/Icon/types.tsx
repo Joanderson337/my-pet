@@ -5,6 +5,8 @@ import { ReactComponent as Google } from './svg/google.svg';
 import { ReactComponent as LogIn } from './svg/log-in.svg';
 import { ReactComponent as User } from './svg/user.svg';
 import { ReactComponent as Check } from './svg/check.svg';
+import { ReactComponent as Remove } from './svg/remove.svg';
+import { ReactComponent as Edit } from './svg/edit.svg';
 
 const IconsTypes = {
   x : X,
@@ -13,7 +15,9 @@ const IconsTypes = {
   google: Google,
   login: LogIn,
   user: User,
-  check: Check
+  check: Check,
+  remove: Remove,
+  edit: Edit
 };
 
 export default IconsTypes;
@@ -26,6 +30,8 @@ export type IconName =
   | 'login'
   | 'user'
   | 'check'
+  | 'remove'
+  | 'edit'
 
 
 
