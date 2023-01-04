@@ -18,7 +18,6 @@ export const PetInfo = styled.div`
   font-weight: bold;
  margin: 10px;
 
-
  p{
   font-size: 12px;
   color: #1C1C1C;
