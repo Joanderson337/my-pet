@@ -3,12 +3,12 @@ import { getFirestore } from 'firebase/firestore';
 import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyAml7voo0DkbvQlQovQJP6bgM0A1E50E-0',
-  authDomain: 'petshop-d50bf.firebaseapp.com',
-  projectId: 'petshop-d50bf',
-  storageBucket: 'petshop-d50bf.appspot.com',
-  messagingSenderId: '854316184642',
-  appId: '1:854316184642:web:1c7b8d18fbd37d7af0a9db'
+  apiKey: 'AIzaSyA_QQXOEL_RA2wXubjuwV3YHswaeqhd2qI',
+  authDomain: 'pet-hotel-accd3.firebaseapp.com',
+  projectId: 'pet-hotel-accd3',
+  storageBucket: 'pet-hotel-accd3.appspot.com',
+  messagingSenderId: '432571266153',
+  appId: '1:432571266153:web:d32b0fb98ce31ccffddef8'
 };
 
 export const app = initializeApp(firebaseConfig);
