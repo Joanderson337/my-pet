@@ -47,10 +47,21 @@ export const SignUpContent = styled.div`
   align-items: center;
   width: 450px;
 
+
+  @media (max-width: 1440px) {
+    margin-top: 100px;
+  }
+
     >img{
       margin-top: 190px;
       width: 80px;
     }
+
+    @media (max-width: 400px) {
+      >img{
+      margin-top: 500px;
+    }
+  }
 `;
 
 export const SignUpInputContainer = styled.div`
