@@ -1,4 +1,4 @@
-import { Cadastro, ContainerHeader, ContentHeader } from './styled';
+import { Cadastro, ContainerHeader, ContentHeader, Details } from './styled';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../config/firebase.config';
 import logo from '../../assets/Icon/image/animal-dog.gif';
@@ -15,17 +15,16 @@ export function Header () {
   return (
     <ContainerHeader>
       <ContentHeader>
-        <div className="page-details">
+        <Details>
           <h1>PetShop</h1>
-          <h2>Acompanhe os pets</h2>
 
           <button type='button' onClick={() => signOut(auth)}>
-            <Icon name='x' />
+            Sair <Icon name='x'  size={18}/>
           </button>
 
-        </div>
+        </Details>
         <img src={logo} alt="logo" />
-        <Cadastro onClick={handleCadastro}>Cadastrar pet</Cadastro>
+        <Cadastro onClick={handleCadastro}>Cadastrar Pet</Cadastro>
       </ContentHeader>
     </ContainerHeader>
   );
