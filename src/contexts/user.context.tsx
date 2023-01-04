@@ -1,6 +1,6 @@
-import { createContext, ReactNode, useState } from 'react';
+import { createContext, ReactNode, useState } from 'react'
 
-import User from '../models/user.types';
+import User from '../models/user.types'
 
 interface IUserContext {
   currentUser: User | null
@@ -18,25 +18,25 @@ export const UserContext = createContext<IUserContext>({
   isAuthenticated: false,
   loginUser: () => {},
   logoutUser: () => {}
-});
+})
 
 export const UserContextProvider = ({ children }: Iteste) => {
-  const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const [currentUser, setCurrentUser] = useState<User | null>(null)
 
-  const isAuthenticated = currentUser !== null;
+  const isAuthenticated = currentUser !== null
 
   const loginUser = (user: User) => {
-    setCurrentUser(user);
-  };
+    setCurrentUser(user)
+  }
 
   const logoutUser = () => {
-    setCurrentUser(null);
-  };
+    setCurrentUser(null)
+  }
 
   return (
     <UserContext.Provider
       value={{ currentUser, isAuthenticated, loginUser, logoutUser }}>
       {children}
     </UserContext.Provider>
-  );
-};
+  )
+}

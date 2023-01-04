@@ -13,5 +13,5 @@ export const ContentPets = styled.div`
 
   display: flex;
   gap: 20px;
-  flex-flow: row wrap;
+  flex-flow: row wrap; 
 `

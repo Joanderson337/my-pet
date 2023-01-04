@@ -2,13 +2,13 @@ import {
   DocumentData,
   QueryDocumentSnapshot,
   SnapshotOptions
-} from 'firebase/firestore';
-import Pets from '../models/pets.types';
-import User from '../models/user.types';
+} from 'firebase/firestore'
+import Pets from '../models/pets.types'
+import User from '../models/user.types'
 
 export const petsConverter = {
   toFirestore (pets: Pets): DocumentData {
-    return { ...pets}
+    return { ...pets }
   },
   fromFirestore (
     snapshot: QueryDocumentSnapshot,
@@ -24,30 +24,26 @@ export const petsConverter = {
       name: data.name,
       old: data.old,
       nameDono: data.nameDono,
-      telephoneDono: data.telephoneDono,
+      telephoneDono: data.telephoneDono
     }
   }
 }
 
-
-
-
-
 export const userConverter = {
   toFirestore (user: User): DocumentData {
-    return { ...user };
+    return { ...user }
   },
   fromFirestore (
     snapshot: QueryDocumentSnapshot,
     options: SnapshotOptions
   ): User {
-    const data = snapshot.data(options);
+    const data = snapshot.data(options)
 
     return {
       id: data.id,
       email: data.email,
       firstName: data.firstName,
-      lastName: data.lastName,
-    };
+      lastName: data.lastName
+    }
   }
-};
+}

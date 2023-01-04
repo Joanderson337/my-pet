@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import Colors from '../../styles/theme';
+import styled from 'styled-components'
+import Colors from '../../styles/theme'
 
 export const CustomButtonContainer = styled.button`
   width: 100%;
@@ -14,18 +14,18 @@ export const CustomButtonContainer = styled.button`
   padding-top: 10px;
   padding-bottom: 10px;
   padding-right: 15px;
-  padding-left: 15px;
+  padding-left: 15px; 
   font-weight: 600;
   margin-bottom: 20px;
 
   @media (max-width: 600px) {
     width: 80%;
   }
-`;
+`
 
 export const IconContainer = styled.div`
   margin-right: 8px;
   height: 100%;
   display: flex;
   align-items: center;
-`;
+`

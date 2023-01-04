@@ -1,5 +1,5 @@
-import React, { ButtonHTMLAttributes } from 'react';
-import { CustomButtonContainer, IconContainer } from './styled';
+import React, { ButtonHTMLAttributes } from 'react'
+import { CustomButtonContainer, IconContainer } from './styled'
 
 interface CustomButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   startIcon?: React.ReactNode
@@ -9,8 +9,8 @@ export function CustomButton ({ startIcon, children, ...rest } : CustomButtonPro
   return (
     <CustomButtonContainer {...rest}>
       {startIcon && <IconContainer>{startIcon}</IconContainer>}
- 
+
       {children}
     </CustomButtonContainer>
-  );
+  )
 }

@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import Colors from '../../styles/theme';
+import styled from 'styled-components'
+import Colors from '../../styles/theme'
 
 export const SignUpContainer = styled.div`
   height: 100vh;
@@ -10,14 +10,14 @@ export const SignUpContainer = styled.div`
   @media (max-width: 600px) {
     height: 80vh;
   }
-`;
+`
 
 export const SignUpBack = styled.button`
     font-size: 1.3rem;
     font-weight: 600;
     background: transparent;
     display: flex;
-`;
+`
 
 export const SignUpHeadline = styled.p`
   display: flex;
@@ -37,19 +37,19 @@ export const SignUpHeadline = styled.p`
   width: 100%;
   text-align: center;
   margin-top: 20px;
-`;
+`
 
 export const SignUpContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 450px;
-
+ 
     >img{
       margin-top: 190px;
       width: 80px;
     }
-`;
+`
 
 export const SignUpInputContainer = styled.div`
   width: 100%;
@@ -62,4 +62,4 @@ export const SignUpInputContainer = styled.div`
     font-weight: 600;
     margin-bottom: 5px;
   }
-`;
+`

@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import Colors from '../../styles/theme';
+import styled from 'styled-components'
+import Colors from '../../styles/theme'
 
 export const LoadingContainer = styled.div`
   position: fixed;
@@ -15,7 +15,7 @@ export const LoadingContainer = styled.div`
   flex-direction: column;
   align-items: center;
   z-index: 100;
-  p {
+  p { 
     color: ${Colors.text.white};
     font-weight: 500;
     margin-bottom: 25px;
@@ -23,4 +23,4 @@ export const LoadingContainer = styled.div`
     max-width: 50%;
     text-align: center;
   }
-`;
+`

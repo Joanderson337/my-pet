@@ -1,18 +1,15 @@
-import {  collection, deleteDoc, doc, getDocs, query, where } from 'firebase/firestore'
-import { FunctionComponent, useContext, useEffect } from 'react'
-import { db } from '../../config/firebase.config'
+import { useContext } from 'react'
 import { PetsContext } from '../../contexts/pets.context'
 import Pets from '../../models/pets.types'
-import { DonoInfo, PetContainer,  PetImage, PetInfo } from './styled'
+import { DonoInfo, PetContainer, PetImage, PetInfo } from './styled'
 interface PetsItemProps {
   data: Pets
 }
 
-export function PetItem ({data} : PetsItemProps){ 
+export function PetItem ({ data } : PetsItemProps) {
   const { deletePet } = useContext(PetsContext)
 
-
-  return ( 
+  return (
     <>
         <PetImage imageUrl={data.imageUrl}>
          <PetContainer>

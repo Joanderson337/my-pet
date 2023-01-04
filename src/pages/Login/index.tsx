@@ -1,9 +1,9 @@
-import { BsGoogle } from 'react-icons/bs';
-import { useForm } from 'react-hook-form';
-import { FiLogIn, FiEdit3 } from 'react-icons/fi';
-import validator from 'validator';
-import { CustomButton } from '../../components/CustomButton';
-import { CustomInput } from '../../components/CustomInput';
+import { BsGoogle } from 'react-icons/bs'
+import { useForm } from 'react-hook-form'
+import { FiLogIn, FiEdit3 } from 'react-icons/fi'
+import validator from 'validator'
+import { CustomButton } from '../../components/CustomButton'
+import { CustomInput } from '../../components/CustomInput'
 import logo from '../../assets/animal-dog.gif'
 import {
   LoginContainer,
@@ -11,20 +11,20 @@ import {
   LoginHeadline,
   LoginInputContainer,
   LoginSubtitle
-} from './styled';
-import { ErrorMessage } from '../../components/ErrorMessage';
+} from './styled'
+import { ErrorMessage } from '../../components/ErrorMessage'
 import {
   AuthError,
   AuthErrorCodes,
   signInWithEmailAndPassword,
   signInWithPopup
-} from 'firebase/auth';
-import { auth, db, googleProvider } from '../../config/firebase.config';
-import { addDoc, collection, getDocs, query, where } from 'firebase/firestore';
-import { useContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Loading } from '../../components/Loading';
-import { UserContext } from '../../contexts/user.context';
+} from 'firebase/auth'
+import { auth, db, googleProvider } from '../../config/firebase.config'
+import { addDoc, collection, getDocs, query, where } from 'firebase/firestore'
+import { useContext, useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { Loading } from '../../components/Loading'
+import { UserContext } from '../../contexts/user.context'
 interface LoginForm {
   email: string
   password: string
@@ -36,83 +36,82 @@ export function Login () {
     setError,
     formState: { errors },
     handleSubmit
-  } = useForm<LoginForm>();
+  } = useForm<LoginForm>()
 
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false)
 
-  const { isAuthenticated } = useContext(UserContext);
+  const { isAuthenticated } = useContext(UserContext)
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate('/home');
+      navigate('/home')
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated])
 
   const handleSignUp = () => {
-    navigate('/signUp');
-  };
-
+    navigate('/signUp')
+  }
 
   const handleSubmitPress = async (data: LoginForm) => {
     try {
-      setIsLoading(true);
+      setIsLoading(true)
 
       const userCredentials = await signInWithEmailAndPassword(
         auth,
         data.email,
         data.password
-      );
+      )
 
-      console.log({ userCredentials });
+      console.log({ userCredentials })
     } catch (error) {
-      const _error = error as AuthError;
+      const _error = error as AuthError
 
       if (_error.code === AuthErrorCodes.INVALID_PASSWORD) {
-        return setError('password', { type: 'mismatch' });
+        return setError('password', { type: 'mismatch' })
       }
 
       if (_error.code === AuthErrorCodes.USER_DELETED) {
-        return setError('email', { type: 'notFound' });
+        return setError('email', { type: 'notFound' })
       }
     } finally {
-      setIsLoading(false);
+      setIsLoading(false)
     }
-  };
+  }
 
   const handleSignInWithGooglePress = async () => {
     try {
-      setIsLoading(true);
+      setIsLoading(true)
 
-      const userCredentials = await signInWithPopup(auth, googleProvider);
+      const userCredentials = await signInWithPopup(auth, googleProvider)
 
       const querySnapshot = await getDocs(
         query(
           collection(db, 'users'),
           where('id', '==', userCredentials.user.uid)
         )
-      );
+      )
 
-      const user = querySnapshot.docs[0]?.data();
+      const user = querySnapshot.docs[0]?.data()
 
       if (!user) {
-        const firstName = userCredentials.user.displayName?.split(' ')[0];
-        const lastName = userCredentials.user.displayName?.split(' ')[1];
+        const firstName = userCredentials.user.displayName?.split(' ')[0]
+        const lastName = userCredentials.user.displayName?.split(' ')[1]
 
         await addDoc(collection(db, 'users'), {
           id: userCredentials.user.uid,
           email: userCredentials.user.email,
           firstName,
-          lastName,
-        });
+          lastName
+        })
       }
     } catch (error) {
-      console.log(error);
+      console.log(error)
     } finally {
-      setIsLoading(false);
+      setIsLoading(false)
     }
-  };
+  }
 
   return (
     <>
@@ -139,7 +138,7 @@ export function Login () {
               {...register('email', {
                 required: true,
                 validate: (value) => {
-                  return validator.isEmail(value);
+                  return validator.isEmail(value)
                 }
               })}
             />
@@ -182,5 +181,5 @@ export function Login () {
         </LoginContent>
       </LoginContainer>
     </>
-  );
+  )
 }

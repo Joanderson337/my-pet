@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import Colors from '../../styles/theme';
+import styled from 'styled-components'
+import Colors from '../../styles/theme'
 
 export const ContainerHeader = styled.header`
   background: #6A5ACD;
@@ -12,7 +12,7 @@ export const ContainerHeader = styled.header`
   @media (max-width: 600px) {
     padding: 0 10px;
   }
-`;
+`
 
 export const ContentHeader = styled.div`
   width: 100%;
@@ -48,8 +48,8 @@ export const ContentHeader = styled.div`
     color: ${Colors.text.white};
   }
 
-  }
-`;
+  } 
+`
 
 export const Cadastro = styled.button`
   background: transparent;

@@ -1,10 +1,9 @@
-import { FiCheck , FiArrowLeft} from 'react-icons/fi';
-import { useForm } from 'react-hook-form';
+import { FiCheck, FiArrowLeft } from 'react-icons/fi'
+import { useForm } from 'react-hook-form'
 
-import { ErrorMessage } from '../../components/ErrorMessage';
-import { CustomInput } from '../../components/CustomInput';
-import { CustomButton } from '../../components/CustomButton';
-import validator from 'validator';
+import { ErrorMessage } from '../../components/ErrorMessage'
+import { CustomInput } from '../../components/CustomInput'
+import { CustomButton } from '../../components/CustomButton'
 
 import {
   SignUpBack,
@@ -12,13 +11,13 @@ import {
   SignUpContent,
   SignUpHeadline,
   SignUpInputContainer
-} from './styled';
-import { db } from '../../config/firebase.config';
-import { addDoc, collection } from 'firebase/firestore';
-import { useNavigate } from 'react-router-dom';
-import { Loading } from '../../components/Loading';
+} from './styled'
+import { db } from '../../config/firebase.config'
+import { addDoc, collection } from 'firebase/firestore'
+import { useNavigate } from 'react-router-dom'
+import { Loading } from '../../components/Loading'
 import logo from '../../assets/animal-dog.gif'
-import { useState } from 'react';
+import { useState } from 'react'
 
 interface SignUpForm {
   name: string
@@ -30,25 +29,23 @@ interface SignUpForm {
   telephoneDono: number
 }
 
-
 export const Cadastro = () => {
   const {
     register,
     handleSubmit,
     formState: { errors }
-  } = useForm<SignUpForm>();
+  } = useForm<SignUpForm>()
 
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false)
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   const handleHome = () => {
-    navigate('/home');
-  };
-
+    navigate('/home')
+  }
 
   const handleSubmitPress = async (data: SignUpForm) => {
     try {
-      setIsLoading(true);
+      setIsLoading(true)
 
       await addDoc(collection(db, 'petshop'), {
         id: data.imageUrl,
@@ -59,14 +56,16 @@ export const Cadastro = () => {
         imageUrl: data.imageUrl,
         nameDono: data.nameDono,
         telephoneDono: data.telephoneDono
-      });
-      navigate('/home')
+      })
+      setTimeout(() => {
+        navigate('/home')
+      }, 4000)
     } catch (error) {
 
     } finally {
-      setIsLoading(false);
+      setIsLoading(false)
     }
-  };
+  }
 
   return (
     <>
@@ -92,7 +91,6 @@ export const Cadastro = () => {
             )}
           </SignUpInputContainer>
 
-          
           <SignUpInputContainer>
             <p>Idade do Pet</p>
             <CustomInput
@@ -119,7 +117,7 @@ export const Cadastro = () => {
               <ErrorMessage>o tipo do pet é obrigatório.</ErrorMessage>
             )}
           </SignUpInputContainer>
-          
+
           <SignUpInputContainer>
             <p>Raça do Pet</p>
             <CustomInput
@@ -159,7 +157,6 @@ export const Cadastro = () => {
             )}
           </SignUpInputContainer>
 
-          
           <SignUpInputContainer>
             <p>Telefone para contato</p>
             <CustomInput
@@ -182,5 +179,5 @@ export const Cadastro = () => {
         </SignUpContent>
       </SignUpContainer>
     </>
-  );
-};
+  )
+}

@@ -36,7 +36,7 @@ export const DonoInfo = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2px;
-  align-items: flex-end;
+  align-items: flex-end; 
   font-weight: bold;
  margin: 10px;
 
@@ -53,7 +53,6 @@ export const DonoInfo = styled.div`
   font-size: 12px;
  }
 `
-
 
 export const PetImage = styled.button<PetImageProps>`
 
