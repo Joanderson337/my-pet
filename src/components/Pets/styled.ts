@@ -12,4 +12,6 @@ export const ContentPets = styled.div`
   justify-content: center;
   gap: 20px;
   flex-flow: row wrap;
+  margin: 40px 0 40px 0;
+  padding-bottom: 40px;
 `;

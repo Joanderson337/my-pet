@@ -7,7 +7,7 @@ import { auth, db } from '../config/firebase.config';
 import { UserContext } from '../contexts/user.context';
 import { userConverter } from '../converters/firestore.converters';
 import { AuthenticationGuard } from '../guards/authGuard';
-import { Cadastro } from '../pages/Cadastro';
+import { RegisterPet } from '../pages/RegisterPet';
 import { Home } from '../pages/Home';
 import { Login } from '../pages/Login';
 import { SignUp } from '../pages/SignUp';
@@ -62,10 +62,10 @@ export function Router () {
           }
         />
         <Route
-          path="/Cadastro"
+          path="/registerPet"
           element={
             <AuthenticationGuard>
-              <Cadastro />
+              <RegisterPet />
             </AuthenticationGuard>
           }
         />

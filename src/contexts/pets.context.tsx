@@ -1,4 +1,5 @@
 import { collection, deleteDoc, doc, getDocs } from 'firebase/firestore';
+import { toast } from 'react-toastify';
 import {
   createContext,
   ReactNode,
@@ -50,8 +51,9 @@ export const PetsContextProvider = ({ children }: Iteste) => {
         await deleteDoc(userDoc);
         const newPets = pets.filter((pet) => pet.id !== id);
         setPets(newPets);
+        toast.success('pet removido com sucesso');
       } catch (error) {
-        console.log(error);
+        toast.error('algo aconteceu, tente novamente!');
       } finally {
         setIsLoading(false);
       }

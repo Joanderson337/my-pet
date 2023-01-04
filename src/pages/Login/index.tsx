@@ -1,23 +1,22 @@
-import { BsGoogle } from 'react-icons/bs';
 import { useForm } from 'react-hook-form';
-import { FiLogIn, FiEdit3 } from 'react-icons/fi';
 import validator from 'validator';
 import { CustomButton } from '../../components/CustomButton';
 import { CustomInput } from '../../components/CustomInput';
+import { toast } from 'react-toastify';
 import logo from '../../assets/Icon/image/animal-dog.gif';
 import {
   LoginContainer,
   LoginContent,
   LoginHeadline,
   LoginInputContainer,
-  LoginSubtitle
+  LoginSubtitle,
 } from './styled';
 import { ErrorMessage } from '../../components/ErrorMessage';
 import {
   AuthError,
   AuthErrorCodes,
   signInWithEmailAndPassword,
-  signInWithPopup
+  signInWithPopup,
 } from 'firebase/auth';
 import { auth, db, googleProvider } from '../../config/firebase.config';
 import { addDoc, collection, getDocs, query, where } from 'firebase/firestore';
@@ -25,17 +24,18 @@ import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Loading } from '../../components/Loading';
 import { UserContext } from '../../contexts/user.context';
+import { Icon } from '../../assets/Icon';
 interface LoginForm {
-  email: string
-  password: string
+  email: string;
+  password: string;
 }
 
-export function Login () {
+export function Login() {
   const {
     register,
     setError,
     formState: { errors },
-    handleSubmit
+    handleSubmit,
   } = useForm<LoginForm>();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -66,6 +66,7 @@ export function Login () {
 
       console.log({ userCredentials });
     } catch (error) {
+      toast.error('algo deu errado, tente novamente!');
       const _error = error as AuthError;
 
       if (_error.code === AuthErrorCodes.INVALID_PASSWORD) {
@@ -103,7 +104,7 @@ export function Login () {
           id: userCredentials.user.uid,
           email: userCredentials.user.email,
           firstName,
-          lastName
+          lastName,
         });
       }
     } catch (error) {
@@ -122,10 +123,9 @@ export function Login () {
           <LoginHeadline>Entre com a sua conta</LoginHeadline>
 
           <CustomButton
-            startIcon={<BsGoogle size={18} />}
             onClick={handleSignInWithGooglePress}
           >
-            Entrar com o Google
+            <Icon name='google' size={18}/> Entrar com o Google
           </CustomButton>
 
           <LoginSubtitle>ou entre com o seu e-mail</LoginSubtitle>
@@ -139,12 +139,16 @@ export function Login () {
                 required: true,
                 validate: (value) => {
                   return validator.isEmail(value);
-                }
+                },
               })}
             />
 
             {errors?.email?.type === 'required' && (
               <ErrorMessage>O e-mail é obrigatório.</ErrorMessage>
+            )}
+
+            {errors?.email?.type === 'notFound' && (
+              <ErrorMessage>O e-mail não foi encontrado.</ErrorMessage>
             )}
 
             {errors?.email?.type === 'validate' && (
@@ -164,18 +168,21 @@ export function Login () {
             {errors?.password?.type === 'required' && (
               <ErrorMessage>A senha é obrigatória.</ErrorMessage>
             )}
+
+            {errors?.password?.type === 'mismatch' && (
+              <ErrorMessage>A senha é inválida.</ErrorMessage>
+            )}
           </LoginInputContainer>
 
           <CustomButton
-            startIcon={<FiLogIn size={18} />}
             onClick={() => handleSubmit(handleSubmitPress)()}
           >
-            Entrar
+            <Icon name='login'size={16} />Entrar
           </CustomButton>
           <CustomButton
-            startIcon={<FiEdit3 size={18} />}
             onClick={handleSignUp}
           >
+            <Icon name='user' size={17}/>
             Criar conta
           </CustomButton>
         </LoginContent>

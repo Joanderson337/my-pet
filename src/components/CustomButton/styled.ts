@@ -17,6 +17,7 @@ export const CustomButtonContainer = styled.button`
   padding-left: 15px;
   font-weight: 600;
   margin-bottom: 20px;
+  gap: 10px;
 
   @media (max-width: 600px) {
     width: 80%;

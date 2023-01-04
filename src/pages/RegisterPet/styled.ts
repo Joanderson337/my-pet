@@ -17,6 +17,8 @@ export const SignUpBack = styled.button`
     font-weight: 600;
     background: transparent;
     display: flex;
+    align-items: center;
+    gap: 2px;
 `;
 
 export const SignUpHeadline = styled.p`

@@ -1,4 +1,3 @@
-import { FiCheck, FiArrowLeft } from 'react-icons/fi';
 import { useForm } from 'react-hook-form';
 import validator from 'validator';
 import {
@@ -25,6 +24,7 @@ import { useContext, useEffect, useState } from 'react';
 import { Loading } from '../../components/Loading';
 import { UserContext } from '../../contexts/user.context';
 import logo from '../../assets/Icon/image/animal-dog.gif';
+import { Icon } from '../../assets/Icon';
 
 interface SignUpForm {
   fristName: string
@@ -95,7 +95,7 @@ export const SignUp = () => {
           <img src={logo} alt="" />
           <SignUpHeadline>
             Crie sua conta
-            <SignUpBack onClick={handleLogin}> <FiArrowLeft size={14}/>Voltar </SignUpBack>
+            <SignUpBack onClick={handleLogin}> <Icon name='back' size={12}/>Voltar </SignUpBack>
           </SignUpHeadline>
 
           <SignUpInputContainer>
@@ -156,7 +156,7 @@ export const SignUp = () => {
               hasError={!!errors?.password}
               placeholder="Digite sua senha"
               type="password"
-              {...register('password', { required: true, minLength: 6 })}
+              {...register('password', { required: true, minLength: 8 })}
             />
 
             {errors?.password?.type === 'required' && (
@@ -165,7 +165,7 @@ export const SignUp = () => {
 
             {errors?.password?.type === 'minLength' && (
               <ErrorMessage>
-                A senha precisa ter no mínimo 6 caracteres.
+                A senha precisa ter no mínimo 8 caracteres.
               </ErrorMessage>
             )}
           </SignUpInputContainer>
@@ -178,7 +178,7 @@ export const SignUp = () => {
               type="password"
               {...register('passwordConfirmation', {
                 required: true,
-                minLength: 6,
+                minLength: 8,
                 validate: (value) => {
                   return value === watchPassword;
                 }
@@ -197,16 +197,15 @@ export const SignUp = () => {
 
             {errors?.passwordConfirmation?.type === 'minLength' && (
               <ErrorMessage>
-                A senha precisa ter no mínimo 6 caracteres.
+                A senha precisa ter no mínimo 8 caracteres.
               </ErrorMessage>
             )}
           </SignUpInputContainer>
 
           <CustomButton
             onClick={() => handleSubmit(handleSubmitPress)()}
-            startIcon={<FiCheck size={18} />}
           >
-            Criar Conta
+            <Icon name='check' size={16}/>  Criar Conta
           </CustomButton>
         </SignUpContent>
       </SignUpContainer>

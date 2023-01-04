@@ -1,4 +1,3 @@
-import { FiCheck, FiArrowLeft } from 'react-icons/fi';
 import { useForm } from 'react-hook-form';
 
 import { ErrorMessage } from '../../components/ErrorMessage';
@@ -10,7 +9,7 @@ import {
   SignUpContainer,
   SignUpContent,
   SignUpHeadline,
-  SignUpInputContainer
+  SignUpInputContainer,
 } from './styled';
 import { db } from '../../config/firebase.config';
 import { addDoc, collection } from 'firebase/firestore';
@@ -18,22 +17,24 @@ import { useNavigate } from 'react-router-dom';
 import { Loading } from '../../components/Loading';
 import logo from '../../assets/Icon/image/animal-dog.gif';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
+import { Icon } from '../../assets/Icon';
 
 interface SignUpForm {
-  name: string
-  type: 'gato' | 'cachorro'
-  old: number
-  breed: string
-  imageUrl: string
-  nameDono: string
-  telephoneDono: number
+  name: string;
+  type: 'gato' | 'cachorro';
+  old: number;
+  breed: string;
+  imageUrl: string;
+  nameDono: string;
+  telephoneDono: number;
 }
 
-export const Cadastro = () => {
+export const RegisterPet = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
   } = useForm<SignUpForm>();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -46,7 +47,7 @@ export const Cadastro = () => {
   const handleSubmitPress = async (data: SignUpForm) => {
     try {
       setIsLoading(true);
-
+      toast.success('cadastrado com sucesso!');
       await addDoc(collection(db, 'petshop'), {
         id: data.imageUrl,
         name: data.name,
@@ -55,13 +56,10 @@ export const Cadastro = () => {
         breed: data.breed,
         imageUrl: data.imageUrl,
         nameDono: data.nameDono,
-        telephoneDono: data.telephoneDono
+        telephoneDono: data.telephoneDono,
       });
-      setTimeout(() => {
-        navigate('/');
-      }, 4000);
     } catch (error) {
-      console.log(error);
+      toast.error('algo deu errado, tente novamente!');
     } finally {
       setIsLoading(false);
     }
@@ -75,7 +73,11 @@ export const Cadastro = () => {
           <img src={logo} alt="" />
           <SignUpHeadline>
             Cadastre seu Pet
-            <SignUpBack onClick={handleHome}> <FiArrowLeft size={14}/>Voltar </SignUpBack>
+            <SignUpBack onClick={handleHome}>
+              {' '}
+              <Icon name="back" size={12} />
+              Voltar{' '}
+            </SignUpBack>
           </SignUpHeadline>
 
           <SignUpInputContainer>
@@ -95,7 +97,7 @@ export const Cadastro = () => {
             <p>Idade do Pet</p>
             <CustomInput
               hasError={!!errors?.old}
-              type= "Number"
+              type="Number"
               placeholder="Digite a idade do seu pet"
               {...register('old', { required: true })}
             />
@@ -170,11 +172,8 @@ export const Cadastro = () => {
               <ErrorMessage>A Imagem do pet é obrigatório.</ErrorMessage>
             )}
           </SignUpInputContainer>
-          <CustomButton
-            onClick={() => handleSubmit(handleSubmitPress)()}
-            startIcon={<FiCheck size={18} />}
-          >
-            Cadastrar pet
+          <CustomButton onClick={() => handleSubmit(handleSubmitPress)()}>
+            <Icon name="check" size={16} /> Cadastrar pet
           </CustomButton>
         </SignUpContent>
       </SignUpContainer>
