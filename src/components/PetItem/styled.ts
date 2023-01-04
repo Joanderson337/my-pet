@@ -7,6 +7,7 @@ interface PetImageProps {
 export const PetContainer = styled.div`
     display: flex;
     flex-direction: column;
+    border-radius: 10px;
 `;
 
 
@@ -23,7 +24,7 @@ export const EditPet = styled.button`
 
 `;
 
-export const Info = styled.button`
+export const Info = styled.div`
       border-radius: 0 0 10px 10px;
 `;
 
@@ -70,7 +71,7 @@ export const DonoInfo = styled.div`
  }
 `;
 
-export const PetImage = styled.button<PetImageProps>`
+export const PetImage = styled.div<PetImageProps>`
 
 
 
@@ -80,20 +81,12 @@ export const PetImage = styled.button<PetImageProps>`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  border-radius: 10px 10px  0 0;
+  border-radius: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   display: flex;
   align-items: flex-end;
   transition: all 0.3s ease;
   background-color: transparent;
   background-blend-mode: color;
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.5);
-    background-blend-mode: color;
-    cursor: pointer;
-    button {
-      visibility: visible;
-      opacity: 1;
-    }
-  }
+
   `;
