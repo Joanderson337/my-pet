@@ -21,21 +21,18 @@ export const EditPet = styled.button`
   margin: 10px;
 `;
 
-export const Info = styled.div`
-  border-radius: 0 0 10px 10px;
-`;
-
 export const PetInfo = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2px;
   align-items: flex-start;
-  font-weight: bold;
   margin: 10px;
+
   p {
-    font-size: 12px;
+    font-size: 11px;
     color: ${Colors.text.dark};
   }
+
   strong {
     font-weight: bold;
     margin-bottom: 2px;
@@ -48,12 +45,13 @@ export const DonoInfo = styled.div`
   flex-direction: column;
   gap: 2px;
   align-items: flex-start;
-  font-weight: bold;
-  margin: 10px;
+  margin: 0 10px 10px 10px;
+
   p {
-    font-size: 12px;
+    font-size: 11px;
     color: ${Colors.text.dark};
   }
+
   strong {
     font-weight: bold;
     margin-bottom: 2px;
