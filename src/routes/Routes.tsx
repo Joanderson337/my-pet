@@ -11,6 +11,7 @@ import { RegisterPet } from '../pages/RegisterPet';
 import { Home } from '../pages/Home';
 import { Login } from '../pages/Login';
 import { SignUp } from '../pages/SignUp';
+import {  EditPetPage } from '../pages/EditPetPage';
 
 export function Router () {
   const [isInitializing, setIsInitializing] = useState(true);
@@ -69,6 +70,7 @@ export function Router () {
             </AuthenticationGuard>
           }
         />
+        <Route path="/edit/:id" element={<EditPetPage />} />
       </Routes>
     </BrowserRouter>
   );

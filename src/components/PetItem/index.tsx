@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Icon } from '../../assets/Icon';
 import { PetsContext } from '../../contexts/pets.context';
 import Pets from '../../models/pets.types';
@@ -9,6 +10,12 @@ interface PetsItemProps {
 
 export function PetItem ({ data } : PetsItemProps) {
   const { deletePet } = useContext(PetsContext);
+  const navigate = useNavigate();
+
+  const handleExploreClick = () => {
+    navigate(`/edit/${data.id}`);
+  };
+
 
   return (
     <>
@@ -17,7 +24,7 @@ export function PetItem ({ data } : PetsItemProps) {
           <DeletePet onClick={() => deletePet(data.id)}>
             <Icon name='remove' size={18}/>
           </DeletePet>
-          <EditPet>
+          <EditPet onClick={handleExploreClick}>
             <Icon name='edit' size={18}/>
           </EditPet>
         </PetImage>

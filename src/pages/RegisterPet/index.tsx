@@ -4,6 +4,7 @@ import { ErrorMessage } from '../../components/ErrorMessage';
 import { CustomInput } from '../../components/CustomInput';
 import { CustomButton } from '../../components/CustomButton';
 
+
 import {
   SignUpBack,
   SignUpContainer,
@@ -27,7 +28,7 @@ interface SignUpForm {
   breed: string;
   imageUrl: string;
   nameOwner: string;
-  telephoneOwner: number;
+  telephoneOwner: string;
 }
 
 export const RegisterPet = () => {
@@ -38,6 +39,7 @@ export const RegisterPet = () => {
   } = useForm<SignUpForm>();
 
   const [isLoading, setIsLoading] = useState(false);
+  const [telefone, setTelefone] = useState('');
 
   const navigate = useNavigate();
   const handleHome = () => {
@@ -163,9 +165,11 @@ export const RegisterPet = () => {
             <p>Telefone para contato</p>
             <CustomInput
               hasError={!!errors?.telephoneOwner}
-              type="number"
               placeholder="Digite o número do telefone"
-              {...register('telephoneOwner', { required: true })}
+              value={telefone}
+              {...register('telephoneOwner', {
+                required: true
+              })}
             />
 
             {errors?.telephoneOwner?.type === 'required' && (

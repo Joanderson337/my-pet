@@ -1,4 +1,4 @@
-import { collection, deleteDoc, doc, getDocs } from 'firebase/firestore';
+import { collection, deleteDoc, doc, getDocs, updateDoc, where } from 'firebase/firestore';
 import { toast } from 'react-toastify';
 import {
   createContext,
@@ -60,6 +60,41 @@ export const PetsContextProvider = ({ children }: IPetsContextProvider) => {
     },
     [db, pets]
   );
+
+  const updatePet = useCallback(
+    async (id: string, age: any) => {
+      try {
+        setIsLoading(true);
+        const userDoc = doc(db, 'petshop', id);
+        const newFields = { age: age  };
+        await updateDoc(userDoc, newFields);
+      } catch (error) {
+        toast.error('algo aconteceu, tente novamente!');
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [db, pets]
+  );
+
+  // const query = useCallback(
+  //   async (id: string ) => {
+  //     try {
+  //       setIsLoading(true);
+  //       const userDoc = doc(db, 'petshop', id);
+  //       const pega = await where('id', '==', userDoc);
+
+  //     } catch (error) {
+  //       toast.error('algo aconteceu, tente novamente!');
+  //     } finally {
+  //       setIsLoading(false);
+  //     }
+  //   },
+  //   [db, pets]
+  // );
+
+
+
 
   return (
     <PetsContext.Provider value={{ pets, isLoading, deletePet }}>
