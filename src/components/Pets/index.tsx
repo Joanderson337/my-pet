@@ -9,7 +9,7 @@ export function Pets () {
 
   useEffect(() => {
     getPet();
-  }, []);
+  }, [getPet]);
 
   return (
     <ContainerPets>
