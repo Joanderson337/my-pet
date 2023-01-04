@@ -1,31 +1,28 @@
 import styled from 'styled-components';
+import Colors from '../../styles/theme';
 
 interface PetImageProps {
-  imageUrl: string
+  imageUrl: string;
 }
 
 export const PetContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
 `;
 
-
 export const DeletePet = styled.button`
-      position: absolute;
-      background: transparent;
-      margin: 10px;
+  background: transparent;
+  margin: 10px;
 `;
 
 export const EditPet = styled.button`
-      position: absolute;
-      background: transparent;
-      margin: 8px 10px 0 170px;
-
+  background: transparent;
+  margin: 10px;
 `;
 
 export const Info = styled.div`
-      border-radius: 0 0 10px 10px;
+  border-radius: 0 0 10px 10px;
 `;
 
 export const PetInfo = styled.div`
@@ -34,19 +31,16 @@ export const PetInfo = styled.div`
   gap: 2px;
   align-items: flex-start;
   font-weight: bold;
- margin: 10px;
-
- p{
-  font-size: 12px;
-  color: #1C1C1C;
- }
-
-
- strong{
-  font-weight: bold;
-  margin-bottom: 2px;
-  font-size: 12px;
- }
+  margin: 10px;
+  p {
+    font-size: 12px;
+    color: ${Colors.text.dark};
+  }
+  strong {
+    font-weight: bold;
+    margin-bottom: 2px;
+    font-size: 12px;
+  }
 `;
 
 export const DonoInfo = styled.div`
@@ -55,23 +49,21 @@ export const DonoInfo = styled.div`
   gap: 2px;
   align-items: flex-start;
   font-weight: bold;
- margin: 10px;
-
-
- p{
-  font-size: 12px;
-  color: #1C1C1C;
- }
-
-
- strong{
-  font-weight: bold;
-  margin-bottom: 2px;
-  font-size: 12px;
- }
+  margin: 10px;
+  p {
+    font-size: 12px;
+    color: ${Colors.text.dark};
+  }
+  strong {
+    font-weight: bold;
+    margin-bottom: 2px;
+    font-size: 12px;
+  }
 `;
 
 export const PetImage = styled.div<PetImageProps>`
+  display: flex;
+  justify-content: space-around;
 
 
 
@@ -88,5 +80,4 @@ export const PetImage = styled.div<PetImageProps>`
   transition: all 0.3s ease;
   background-color: transparent;
   background-blend-mode: color;
-
-  `;
+`;

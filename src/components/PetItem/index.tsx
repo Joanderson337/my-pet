@@ -13,13 +13,15 @@ export function PetItem ({ data } : PetsItemProps) {
   return (
     <>
       <PetContainer>
-        <PetImage imageUrl={data.imageUrl} />
-        <DeletePet onClick={() => deletePet(data.id)}>
-          <Icon name='remove' size={18}/>
-        </DeletePet>
-        <EditPet>
-          <Icon name='edit' size={18}/>
-        </EditPet>
+        <PetImage imageUrl={data.imageUrl}>
+          <DeletePet onClick={() => deletePet(data.id)}>
+            <Icon name='remove' size={18}/>
+          </DeletePet>
+          <EditPet>
+            <Icon name='edit' size={18}/>
+          </EditPet>
+        </PetImage>
+
         <Info>
           <PetInfo>
             <strong>Informações do Pet:</strong>
