@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Icon } from '../../assets/Icon';
 import { PetsContext } from '../../contexts/pets.context';
@@ -10,6 +10,7 @@ interface PetsItemProps {
 
 export function PetItem ({ data } : PetsItemProps) {
   const { deletePet } = useContext(PetsContext);
+
   const navigate = useNavigate();
 
   const handleExploreClick = () => {

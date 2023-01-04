@@ -15,6 +15,9 @@ interface IPetsContext {
   pets: Pets[];
   isLoading: boolean;
   deletePet: (id: string) => void;
+  editPet: (id: string) => void
+  FilterPet: (type: string) => void
+  getPet:  () => Promise<void>
 }
 
 interface IPetsContextProvider {
@@ -24,7 +27,10 @@ interface IPetsContextProvider {
 export const PetsContext = createContext<IPetsContext>({
   pets: [],
   isLoading: false,
-  deletePet: () => Promise.resolve()
+  deletePet: () => Promise.resolve(),
+  editPet: () => Promise.resolve(),
+  getPet: () => Promise.resolve(),
+  FilterPet: () => Promise.resolve()
 });
 
 export const PetsContextProvider = ({ children }: IPetsContextProvider) => {
@@ -42,6 +48,27 @@ export const PetsContextProvider = ({ children }: IPetsContextProvider) => {
       setPets(data);
     })();
   }, []);
+
+  const getPet = useCallback(
+    async () => {
+      try {
+        (async () => {
+          setIsLoading(true);
+          const response = await getDocs(useCollectionRef);
+          const data: any = response.docs.map((doc) => ({
+            ...doc.data(),
+            id: doc.id
+          }));
+          setPets(data);
+        })();
+      } catch (error) {
+        toast.error('algo aconteceu, tente novamente!');
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    []
+  );
 
   const deletePet = useCallback(
     async (id: string) => {
@@ -61,6 +88,23 @@ export const PetsContextProvider = ({ children }: IPetsContextProvider) => {
     [db, pets]
   );
 
+
+  const editPet = useCallback(
+    async (id: string) => {
+      try {
+        setIsLoading(true);
+        const PetId = pets.filter((pet: { id: string; }) => pet.id === id);
+        setPets(PetId);
+      } catch (error) {
+        toast.error('algo aconteceu, tente novamente!');
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [pets]
+  );
+
+
   const updatePet = useCallback(
     async (id: string, age: any) => {
       try {
@@ -68,6 +112,23 @@ export const PetsContextProvider = ({ children }: IPetsContextProvider) => {
         const userDoc = doc(db, 'petshop', id);
         const newFields = { age: age  };
         await updateDoc(userDoc, newFields);
+      } catch (error) {
+        toast.error('algo aconteceu, tente novamente!');
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [db, pets]
+  );
+
+
+  const FilterPet = useCallback(
+    async (type: string) => {
+      try {
+        setIsLoading(true);
+        const newPetsFilter = pets.filter((pet) => pet.type === type);
+        setPets(newPetsFilter);
+        toast.success('sucesso');
       } catch (error) {
         toast.error('algo aconteceu, tente novamente!');
       } finally {
@@ -97,7 +158,7 @@ export const PetsContextProvider = ({ children }: IPetsContextProvider) => {
 
 
   return (
-    <PetsContext.Provider value={{ pets, isLoading, deletePet }}>
+    <PetsContext.Provider value={{ pets, isLoading, deletePet , FilterPet, editPet, getPet}}>
       {children}
     </PetsContext.Provider>
   );

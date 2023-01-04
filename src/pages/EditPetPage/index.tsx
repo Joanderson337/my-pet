@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom';
+import { Header } from '../../components/Header';
 import { PetEdit } from '../../components/PetEdit';
 
 export function EditPetPage () {
@@ -9,6 +10,7 @@ export function EditPetPage () {
 
   return(
     <>
+      <Header />
       <PetEdit petId={id}/>
     </>
   );
