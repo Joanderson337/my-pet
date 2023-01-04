@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import Colors from '../../styles/theme'
+import styled from 'styled-components';
+import Colors from '../../styles/theme';
 
 type CustomInputContainerProps = {
   hasError?: boolean
@@ -15,7 +15,7 @@ export const CustomInputContainer = styled.input<CustomInputContainerProps>`
   padding-bottom: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
-  color: ${Colors.text.dark}; 
+  color: ${Colors.text.dark};
 
 
 
@@ -28,4 +28,4 @@ export const CustomInputContainer = styled.input<CustomInputContainerProps>`
     outline: ${(props) =>
     props.hasError ? 'none' : `2px solid ${Colors.input.placeholder}`};
   }
-`
+`;

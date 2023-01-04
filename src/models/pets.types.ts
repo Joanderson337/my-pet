@@ -9,4 +9,4 @@ interface Pets {
   telephoneDono: string
 }
 
-export default Pets
+export default Pets;

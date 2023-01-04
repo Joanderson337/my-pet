@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 interface PetImageProps {
   imageUrl: string
@@ -8,7 +8,7 @@ export const PetContainer = styled.div`
   display: flex;
   width: 100%;
   background-color: #F8F8FF;
-`
+`;
 
 export const PetInfo = styled.div`
   display: flex;
@@ -30,13 +30,13 @@ export const PetInfo = styled.div`
   margin-bottom: 2px;
   font-size: 12px;
  }
-`
+`;
 
 export const DonoInfo = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2px;
-  align-items: flex-end; 
+  align-items: flex-end;
   font-weight: bold;
  margin: 10px;
 
@@ -52,10 +52,9 @@ export const DonoInfo = styled.div`
   margin-bottom: 2px;
   font-size: 12px;
  }
-`
+`;
 
 export const PetImage = styled.button<PetImageProps>`
-
 
   background-image: ${(props) => `url('${props.imageUrl}')`};
   height: 380px;
@@ -79,4 +78,4 @@ export const PetImage = styled.button<PetImageProps>`
       opacity: 1;
     }
   }
-  `
+  `;

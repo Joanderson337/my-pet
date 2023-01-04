@@ -1,6 +1,6 @@
-import React, { FunctionComponent, InputHTMLAttributes } from 'react'
+import React, { FunctionComponent, InputHTMLAttributes } from 'react';
 
-import { CustomInputContainer } from './styled'
+import { CustomInputContainer } from './styled';
 
 interface CustomInputProps extends InputHTMLAttributes<HTMLInputElement> {
   hasError?: boolean
@@ -8,8 +8,8 @@ interface CustomInputProps extends InputHTMLAttributes<HTMLInputElement> {
 
 export const CustomInput: FunctionComponent<CustomInputProps> = React.forwardRef(
   (props, ref) => {
-    return <CustomInputContainer {...props} ref={ref as any} />
+    return <CustomInputContainer {...props} ref={ref as any} />;
   }
-)
+);
 
-CustomInput.displayName = 'CustomInput'
+CustomInput.displayName = 'CustomInput';

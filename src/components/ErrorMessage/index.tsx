@@ -1,5 +1,5 @@
-import { ReactNode } from 'react'
-import { InputErrorMessageContainer } from './styled'
+import { ReactNode } from 'react';
+import { InputErrorMessageContainer } from './styled';
 
 interface ErrorMessageProps {
   children: ReactNode
@@ -10,5 +10,5 @@ export const ErrorMessage = ({ children }: ErrorMessageProps) => {
     <>
       <InputErrorMessageContainer>{children}</InputErrorMessageContainer>
     </>
-  )
-}
+  );
+};

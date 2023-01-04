@@ -1,32 +1,32 @@
-import { onAuthStateChanged } from 'firebase/auth'
-import { collection, getDocs, query, where } from 'firebase/firestore'
-import { useContext, useState } from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { Loading } from '../components/Loading'
-import { auth, db } from '../config/firebase.config'
-import { UserContext } from '../contexts/user.context'
-import { userConverter } from '../converters/firestore.converters'
-import { AuthenticationGuard } from '../guards/authGuard'
-import { Cadastro } from '../pages/Cadastro'
-import { Home } from '../pages/Home'
-import { Login } from '../pages/Login'
-import { SignUp } from '../pages/SignUp'
+import { onAuthStateChanged } from 'firebase/auth';
+import { collection, getDocs, query, where } from 'firebase/firestore';
+import { useContext, useState } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Loading } from '../components/Loading';
+import { auth, db } from '../config/firebase.config';
+import { UserContext } from '../contexts/user.context';
+import { userConverter } from '../converters/firestore.converters';
+import { AuthenticationGuard } from '../guards/authGuard';
+import { Cadastro } from '../pages/Cadastro';
+import { Home } from '../pages/Home';
+import { Login } from '../pages/Login';
+import { SignUp } from '../pages/SignUp';
 
 export function Router () {
-  const [isInitializing, setIsInitializing] = useState(true)
+  const [isInitializing, setIsInitializing] = useState(true);
 
-  const { isAuthenticated, loginUser, logoutUser } = useContext(UserContext)
+  const { isAuthenticated, loginUser, logoutUser } = useContext(UserContext);
 
   onAuthStateChanged(auth, async (user) => {
-    const isSigningOut = isAuthenticated && !user
+    const isSigningOut = isAuthenticated && !user;
 
     if (isSigningOut) {
-      logoutUser()
+      logoutUser();
 
-      return setIsInitializing(false)
+      return setIsInitializing(false);
     }
 
-    const isSigningIn = !isAuthenticated && user
+    const isSigningIn = !isAuthenticated && user;
 
     if (isSigningIn) {
       const querySnapshot = await getDocs(
@@ -34,19 +34,19 @@ export function Router () {
           collection(db, 'users').withConverter(userConverter),
           where('id', '==', user.uid)
         )
-      )
+      );
 
-      const userFromFirestore = querySnapshot.docs[0]?.data()
+      const userFromFirestore = querySnapshot.docs[0]?.data();
 
-      loginUser(userFromFirestore)
+      loginUser(userFromFirestore);
 
-      return setIsInitializing(false)
+      return setIsInitializing(false);
     }
 
-    return setIsInitializing(false)
-  })
+    return setIsInitializing(false);
+  });
 
-  if (isInitializing) return <Loading />
+  if (isInitializing) return <Loading />;
 
   return (
     <BrowserRouter>
@@ -61,7 +61,7 @@ export function Router () {
             </AuthenticationGuard>
           }
         />
-           <Route
+        <Route
           path="/Cadastro"
           element={
             <AuthenticationGuard>
@@ -71,5 +71,5 @@ export function Router () {
         />
       </Routes>
     </BrowserRouter>
-  )
+  );
 }

@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
 *{
@@ -6,7 +6,7 @@ export default createGlobalStyle`
   padding: 0;
   border: none;
   box-sizing: border-box;
-  text-decoration: none; 
+  text-decoration: none;
   font-size: 1.6rem;
   font-family: 'Poppins', sans-serif;
 }
@@ -36,4 +36,4 @@ a{
     font-size: 77.5%;
   }}
 
-`
+`;

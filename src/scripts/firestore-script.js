@@ -1,3 +1,6 @@
+/* eslint-disable no-undef */
+/* eslint-disable @typescript-eslint/no-var-requires */
+// eslint-disable-next-line no-undef
 const { addDoc, collection } = require('firebase/firestore');
 const { getFirestore } = require('firebase/firestore');
 const { initializeApp } = require('firebase/app');
@@ -44,5 +47,6 @@ const main = async () => {
     })
   );
 };
+
 
 main().then(() => process.exit());

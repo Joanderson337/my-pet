@@ -1,15 +1,15 @@
-import { FiCheck, FiArrowLeft } from 'react-icons/fi'
-import { useForm } from 'react-hook-form'
-import validator from 'validator'
+import { FiCheck, FiArrowLeft } from 'react-icons/fi';
+import { useForm } from 'react-hook-form';
+import validator from 'validator';
 import {
   AuthError,
   createUserWithEmailAndPassword,
   AuthErrorCodes
-} from 'firebase/auth'
+} from 'firebase/auth';
 
-import { ErrorMessage } from '../../components/ErrorMessage'
-import { CustomInput } from '../../components/CustomInput'
-import { CustomButton } from '../../components/CustomButton'
+import { ErrorMessage } from '../../components/ErrorMessage';
+import { CustomInput } from '../../components/CustomInput';
+import { CustomButton } from '../../components/CustomButton';
 
 import {
   SignUpBack,
@@ -17,14 +17,14 @@ import {
   SignUpContent,
   SignUpHeadline,
   SignUpInputContainer
-} from './styled'
-import { auth, db } from '../../config/firebase.config'
-import { addDoc, collection } from 'firebase/firestore'
-import { useNavigate } from 'react-router-dom'
-import { useContext, useEffect, useState } from 'react'
-import { Loading } from '../../components/Loading'
-import { UserContext } from '../../contexts/user.context'
-import logo from '../../assets/animal-dog.gif'
+} from './styled';
+import { auth, db } from '../../config/firebase.config';
+import { addDoc, collection } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
+import { Loading } from '../../components/Loading';
+import { UserContext } from '../../contexts/user.context';
+import logo from '../../assets/Icon/image/animal-dog.gif';
 
 interface SignUpForm {
   fristName: string
@@ -41,51 +41,51 @@ export const SignUp = () => {
     watch,
     setError,
     formState: { errors }
-  } = useForm<SignUpForm>()
+  } = useForm<SignUpForm>();
 
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
 
-  const watchPassword = watch('password')
-  const { isAuthenticated } = useContext(UserContext)
+  const watchPassword = watch('password');
+  const { isAuthenticated } = useContext(UserContext);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate('/home')
+      navigate('/home');
     }
-  }, [isAuthenticated])
+  }, [isAuthenticated]);
 
   const handleLogin = () => {
-    navigate('/')
-  }
+    navigate('/');
+  };
 
   const handleSubmitPress = async (data: SignUpForm) => {
     try {
-      setIsLoading(true)
+      setIsLoading(true);
 
       const userCredentials = await createUserWithEmailAndPassword(
         auth,
         data.email,
         data.password
-      )
+      );
 
       await addDoc(collection(db, 'users'), {
         id: userCredentials.user.uid,
         email: userCredentials.user.email,
         firstName: data.fristName,
         lastName: data.lastName
-      })
+      });
     } catch (error) {
-      const _error = error as AuthError
+      const _error = error as AuthError;
 
       if (_error.code === AuthErrorCodes.EMAIL_EXISTS) {
-        return setError('email', { type: 'alreadyInUse' })
+        return setError('email', { type: 'alreadyInUse' });
       }
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
   return (
     <>
@@ -132,7 +132,7 @@ export const SignUp = () => {
               {...register('email', {
                 required: true,
                 validate: (value) => {
-                  return validator.isEmail(value)
+                  return validator.isEmail(value);
                 }
               })}
             />
@@ -180,7 +180,7 @@ export const SignUp = () => {
                 required: true,
                 minLength: 6,
                 validate: (value) => {
-                  return value === watchPassword
+                  return value === watchPassword;
                 }
               })}
             />
@@ -211,5 +211,5 @@ export const SignUp = () => {
         </SignUpContent>
       </SignUpContainer>
     </>
-  )
-}
+  );
+};
