@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { Icon } from '../../assets/Icon';
 import { PetsContext } from '../../contexts/pets.context';
 import Pets from '../../models/pets.types';
-import { DeletePet, DonoInfo, EditPet,  PetContainer, PetImage, PetInfo } from './styled';
+import { DeletePet, OwnerInfo, EditPet,  PetContainer, PetImage, PetInfo } from './styled';
 interface PetsItemProps {
   data: Pets
 }
@@ -25,15 +25,15 @@ export function PetItem ({ data } : PetsItemProps) {
         <PetInfo>
           <strong>Informações do Pet:</strong>
           <p>Nome: {data.name}</p>
-          <p>Idade: {data.old} anos</p>
+          <p>Idade: {data.age} {data.age > 1 ? 'anos' : 'ano'}</p>
           <p>Raça: {data.breed}</p>
           <p>Animal: {data.type}</p>
         </PetInfo>
-        <DonoInfo>
+        <OwnerInfo>
           <strong>Informações do Dono:</strong>
-          <p>Nome: {data.nameDono}</p>
-          <p>Fone: {data.telephoneDono}</p>
-        </DonoInfo>
+          <p>Nome: {data.nameOwner}</p>
+          <p>Fone: {data.telephoneOwner}</p>
+        </OwnerInfo>
       </PetContainer>
     </>
 

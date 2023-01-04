@@ -40,7 +40,7 @@ export const PetInfo = styled.div`
   }
 `;
 
-export const DonoInfo = styled.div`
+export const OwnerInfo = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2px;

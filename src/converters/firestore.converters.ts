@@ -22,9 +22,9 @@ export const petsConverter = {
       type: data.type,
       imageUrl: data.imageUrl,
       name: data.name,
-      old: data.old,
-      nameDono: data.nameDono,
-      telephoneDono: data.telephoneDono
+      age: data.age,
+      nameOwner: data.nameOwner,
+      telephoneOwner: data.telephoneOwner
     };
   }
 };

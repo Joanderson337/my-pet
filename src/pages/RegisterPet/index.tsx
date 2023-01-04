@@ -23,11 +23,11 @@ import { Icon } from '../../assets/Icon';
 interface SignUpForm {
   name: string;
   type: 'gato' | 'cachorro';
-  old: number;
+  age: number;
   breed: string;
   imageUrl: string;
-  nameDono: string;
-  telephoneDono: number;
+  nameOwner: string;
+  telephoneOwner: number;
 }
 
 export const RegisterPet = () => {
@@ -51,12 +51,12 @@ export const RegisterPet = () => {
       await addDoc(collection(db, 'petshop'), {
         id: data.imageUrl,
         name: data.name,
-        old: data.old,
+        age: data.age,
         type: data.type,
         breed: data.breed,
         imageUrl: data.imageUrl,
-        nameDono: data.nameDono,
-        telephoneDono: data.telephoneDono,
+        nameOwner: data.nameOwner,
+        telephoneOwner: data.telephoneOwner,
       });
     } catch (error) {
       toast.error('algo deu errado, tente novamente!');
@@ -96,13 +96,13 @@ export const RegisterPet = () => {
           <SignUpInputContainer>
             <p>Idade do Pet</p>
             <CustomInput
-              hasError={!!errors?.old}
+              hasError={!!errors?.age}
               type="Number"
               placeholder="Digite a idade do seu pet"
-              {...register('old', { required: true })}
+              {...register('age', { required: true })}
             />
 
-            {errors?.old?.type === 'required' && (
+            {errors?.age?.type === 'required' && (
               <ErrorMessage>A idade do pet é obrigatório.</ErrorMessage>
             )}
           </SignUpInputContainer>
@@ -149,12 +149,12 @@ export const RegisterPet = () => {
           <SignUpInputContainer>
             <p>Nome do Dono</p>
             <CustomInput
-              hasError={!!errors?.nameDono}
+              hasError={!!errors?.nameOwner}
               placeholder="Digite o nome do dono"
-              {...register('nameDono', { required: true })}
+              {...register('nameOwner', { required: true })}
             />
 
-            {errors?.nameDono?.type === 'required' && (
+            {errors?.nameOwner?.type === 'required' && (
               <ErrorMessage>A Imagem do pet é obrigatório.</ErrorMessage>
             )}
           </SignUpInputContainer>
@@ -162,13 +162,13 @@ export const RegisterPet = () => {
           <SignUpInputContainer>
             <p>Telefone para contato</p>
             <CustomInput
-              hasError={!!errors?.telephoneDono}
+              hasError={!!errors?.telephoneOwner}
               type="number"
               placeholder="Digite o número do telefone"
-              {...register('telephoneDono', { required: true })}
+              {...register('telephoneOwner', { required: true })}
             />
 
-            {errors?.telephoneDono?.type === 'required' && (
+            {errors?.telephoneOwner?.type === 'required' && (
               <ErrorMessage>A Imagem do pet é obrigatório.</ErrorMessage>
             )}
           </SignUpInputContainer>
