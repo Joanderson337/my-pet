@@ -1,7 +1,6 @@
 import { Cadastro, ContainerHeader, ContentHeader } from './styled';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../config/firebase.config';
-import { FiPower } from 'react-icons/fi';
 import logo from '../../assets/Icon/image/animal-dog.gif';
 import { useNavigate } from 'react-router-dom';
 import { Icon } from '../../assets/Icon';

@@ -17,7 +17,7 @@ interface IPetsContext {
   deletePet: (id: string) => void;
 }
 
-interface Iteste {
+interface IPetsContextProvider {
   children: ReactNode;
 }
 
@@ -27,7 +27,7 @@ export const PetsContext = createContext<IPetsContext>({
   deletePet: () => Promise.resolve()
 });
 
-export const PetsContextProvider = ({ children }: Iteste) => {
+export const PetsContextProvider = ({ children }: IPetsContextProvider) => {
   const [pets, setPets] = useState<Pets[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const useCollectionRef = collection(db, 'petshop');
