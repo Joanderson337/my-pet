@@ -2,14 +2,10 @@ import styled from 'styled-components';
 import Colors from '../../styles/theme';
 
 export const SignUpContainer = styled.div`
-  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
 
-  @media (max-width: 600px) {
-    height: 80vh;
-  }
 `;
 
 export const SignUpBack = styled.button`
@@ -46,10 +42,6 @@ export const SignUpContent = styled.div`
   flex-direction: column;
   align-items: center;
   width: 450px;
-
-  @media (max-width: 1440px) {
-    margin-top: 100px;
-  }
 
   > img {
     margin-top: 190px;

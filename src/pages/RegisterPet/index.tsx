@@ -16,13 +16,13 @@ import { db, storage } from '../../config/firebase.config';
 import { addDoc, collection } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import { Loading } from '../../components/Loading';
-import logo from '../../assets/Icon/image/animal-dog.gif';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { Icon } from '../../assets/Icon';
 import { ref, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
 import { CustomSelect } from '../../components/CustomSelect';
 import { CustomBreed } from '../../components/CustomBreed';
+import { Header } from '../../components/Header';
 
 interface SignUpForm {
   name: string;
@@ -115,9 +115,9 @@ export const RegisterPet = () => {
   return (
     <>
       {isLoading && <Loading />}
+      <Header />
       <SignUpContainer>
         <SignUpContent>
-          <img src={logo} alt="" />
           <SignUpHeadline>
             Cadastre seu Pet
             <SignUpBack onClick={handleHome}>
