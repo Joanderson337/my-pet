@@ -8,63 +8,60 @@ interface PetImageProps {
 export const PetContainer = styled.div`
   display: flex;
   flex-direction: column;
-  border-radius: 10px;
+  border-radius: 1rem;
 `;
 
 export const DeletePet = styled.button`
   background: transparent;
-  margin: 10px;
+  margin: 1rem;
 `;
 
 export const EditPet = styled.button`
   background: transparent;
-  margin: 10px;
+  margin: 1rem;
 `;
 
 export const PetInfo = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 0.2rem;
   align-items: flex-start;
-  margin: 10px;
+  margin: 1rem;
 
   p {
-    font-size: 11px;
+    font-size: 1.1rem;
     color: ${Colors.text.dark};
   }
 
   strong {
     font-weight: bold;
-    margin-bottom: 2px;
-    font-size: 12px;
+    margin-bottom: 0.2rem;
+    font-size: 1.2rem;
   }
 `;
 
 export const OwnerInfo = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 0.2rem;
   align-items: flex-start;
-  margin: 0 10px 10px 10px;
+  margin: 0 1rem 1rem 1rem;
 
   p {
-    font-size: 11px;
+    font-size: 1.1rem;
     color: ${Colors.text.dark};
   }
 
   strong {
     font-weight: bold;
-    margin-bottom: 2px;
-    font-size: 12px;
+    margin-bottom: 0.2rem;
+    font-size: 1.2rem;
   }
 `;
 
 export const PetImage = styled.div<PetImageProps>`
   display: flex;
   justify-content: space-around;
-
-
-
   background-image: ${(props) => `url('${props.imageUrl}')`};
   height: 28rem;
   width: 20rem;

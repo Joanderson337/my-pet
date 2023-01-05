@@ -6,11 +6,11 @@ export const SignUpContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 100px;
+  margin-top: 10rem;
 
 
   @media (max-width: 600px) {
-    margin-top: 60px;
+    margin-top: 6rem;
   }
 `;
 
@@ -30,40 +30,40 @@ export const SignUpHeadline = styled.p`
 
   @media (max-width: 600px) {
     width: 80%;
-    margin-top: 60px;
+    margin-top: 6rem;
   }
 
   font-weight: 600;
   font-size: 1.3rem;
-  margin-bottom: 20px;
+  margin-bottom: 2rem;
   color: ${Colors.text.dark};
-  padding-bottom: 20px;
-  border-bottom: 1px solid #6c757d;
+  padding-bottom: 2rem;
+  border-bottom: 0.1rem solid #6c757d;
   width: 100%;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 2rem;
 `;
 
 export const SignUpContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 450px;
+  width: 45rem;
 
     >img{
-      width: 80px;
+      width: 8rem;
     }
 `;
 
 export const SignUpInputContainer = styled.div`
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 2rem;
 
   @media (max-width: 600px) {
     width: 80%;
   }
   p:nth-child(1) {
     font-weight: 600;
-    margin-bottom: 5px;
+    margin-bottom: 0.5rem;
   }
 `;

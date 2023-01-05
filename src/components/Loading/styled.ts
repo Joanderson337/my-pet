@@ -18,7 +18,7 @@ export const LoadingContainer = styled.div`
   p {
     color: ${Colors.text.white};
     font-weight: 500;
-    margin-bottom: 25px;
+    margin-bottom: 2.5rem;
     font-size: 1.325rem;
     max-width: 50%;
     text-align: center;

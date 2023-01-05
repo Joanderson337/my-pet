@@ -60,7 +60,7 @@ export const EnvyImgEdit = styled.form`
   > div {
     display: flex;
     justify-content: space-between;
-    margin-top: 10px;
+    margin-top: 1rem;
     align-items: center;
     text-align: center;
 

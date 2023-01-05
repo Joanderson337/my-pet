@@ -43,7 +43,7 @@ export const Details = styled.div`
     color: ${Colors.text.white};
   }
   > button {
-    margin-top: 10px;
+    margin-top: 1rem;
     background: transparent;
     border: 0;
     color: ${Colors.text.white};
