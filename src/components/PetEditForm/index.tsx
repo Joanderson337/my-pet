@@ -16,11 +16,11 @@ import { PetsContext } from '../../contexts/pets.context';
 import Pets from '../../models/pets.types';
 import { useNavigate } from 'react-router-dom';
 import { Loading } from '../Loading';
-import { toast } from 'react-toastify';
 import { CustomSelect } from '../CustomSelect';
 import { storage } from '../../config/firebase.config';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { CustomBreed } from '../CustomBreed';
+import { toast } from 'react-toastify';
 
 interface PetsItemProps {
   data: Pets;
@@ -43,6 +43,32 @@ export const PetEditForm = ({ data }: PetsItemProps) => {
   const handleHome = () => {
     navigate('/home');
   };
+
+  const handlVerifiqued = () => {
+    if(name === ''){
+      toast.error('Digite o nome do pet, por favor');
+    }
+    if(age === ''){
+      toast.error('Digite digite a idade, por favor');
+    }
+    if(type === ''){
+      toast.error('Selecione gato ou cachorro, por favor');
+    }
+    if(breed === ''){
+      toast.error('Selecione a raça, por favor');
+    }
+    if(nameOwner === ''){
+      toast.error('Digite o nome do dono, por favor');
+    }
+    if(telephoneOwner === ''){
+      toast.error('Digite um telefone, por favor');
+    }
+    else {
+      handleUpdate();
+    }
+  };
+
+  console.log(imageUrl);
 
   const handleUpdate = () => {
     try {
@@ -140,7 +166,7 @@ export const PetEditForm = ({ data }: PetsItemProps) => {
           </EditInputContainer>
 
           <EditInputContainer>
-            <p>Envie Imagem do pet</p>
+            <p>Atualizar imagem do pet</p>
             <EnvyImgEdit onSubmit={handleImg}>
               <CustomInput accept=".jpeg,.png, .jpg" type="file" />
               <div>
@@ -154,6 +180,7 @@ export const PetEditForm = ({ data }: PetsItemProps) => {
             <p>Nome do Dono</p>
             <CustomInput
               value={nameOwner}
+              placeholder="Digite o nome do dono"
               onChange={(event) => setNameOwner(event.target.value)}
             />
           </EditInputContainer>
@@ -163,11 +190,12 @@ export const PetEditForm = ({ data }: PetsItemProps) => {
             <CustomInput
               type="number"
               value={telephoneOwner}
+              placeholder="Digite o telefone para contato"
               onChange={(event) => setTelephoneOwner(event.target.value)}
             />
           </EditInputContainer>
 
-          <CustomButton onClick={handleUpdate}>
+          <CustomButton onClick={handlVerifiqued}>
             <Icon name="check" size={16} />
             Atualizar
           </CustomButton>
