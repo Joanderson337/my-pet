@@ -4,15 +4,15 @@ import { ErrorMessage } from '../../components/ErrorMessage';
 import { CustomInput } from '../../components/CustomInput';
 import { CustomButton } from '../../components/CustomButton';
 
-
 import {
+  EnvyImg,
   SignUpBack,
   SignUpContainer,
   SignUpContent,
   SignUpHeadline,
   SignUpInputContainer,
 } from './styled';
-import { db } from '../../config/firebase.config';
+import { db, storage } from '../../config/firebase.config';
 import { addDoc, collection } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import { Loading } from '../../components/Loading';
@@ -20,13 +20,13 @@ import logo from '../../assets/Icon/image/animal-dog.gif';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { Icon } from '../../assets/Icon';
+import { ref, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
 
 interface SignUpForm {
   name: string;
   type: string;
   age: string;
   breed: string;
-  imageUrl: string;
   nameOwner: string;
   telephoneOwner: string;
 }
@@ -39,6 +39,8 @@ export const RegisterPet = () => {
   } = useForm<SignUpForm>();
 
   const [isLoading, setIsLoading] = useState(false);
+  const [imgURL, setImgURL] = useState('');
+  const [progressPorcent, setPorgessPorcent] = useState(0);
 
   const navigate = useNavigate();
   const handleHome = () => {
@@ -50,19 +52,58 @@ export const RegisterPet = () => {
       setIsLoading(true);
       toast.success('cadastrado com sucesso!');
       await addDoc(collection(db, 'petshop'), {
-        id: data.imageUrl,
         name: data.name,
         age: data.age,
         type: data.type,
         breed: data.breed,
-        imageUrl: data.imageUrl,
+        imageUrl: imgURL,
         nameOwner: data.nameOwner,
         telephoneOwner: data.telephoneOwner,
       });
+      navigate('/home');
     } catch (error) {
-      toast.error('algo deu errado, tente novamente!');
+      toast.error('algo deu errado, verifique os dados e tente novamente!');
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleImg = (event: any) => {
+    event.preventDefault();
+    const file = event.target[0]?.files[0];
+    console.log(file);
+    if (!file) return;
+
+    const storageRef = ref(
+      storage,
+      `images/${file.lastModified}${file.name}${file.lastModifiedDate}${file.size}`
+    );
+    const uploadTask = uploadBytesResumable(storageRef, file);
+
+    uploadTask.on(
+      'state_changed',
+      (snapshot) => {
+        const progress = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+        setPorgessPorcent(progress);
+      },
+      (error) => {
+        alert(error);
+      },
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          setImgURL(downloadURL);
+        });
+      }
+    );
+  };
+
+  const uploadImg = () => {
+    if (imgURL !== '') {
+      handleSubmit(handleSubmitPress)();
+    } else {
+      toast.error('realize o envio da imagem');
     }
   };
 
@@ -133,18 +174,15 @@ export const RegisterPet = () => {
           </SignUpInputContainer>
 
           <SignUpInputContainer>
-            <p>URL da imagem do Pet</p>
-            <CustomInput
-              placeholder="URL da imagem do seu pet"
-              hasError={!!errors?.imageUrl}
-              {...register('imageUrl', { required: true })}
-            />
-
-            {errors?.imageUrl?.type === 'required' && (
-              <ErrorMessage>A Imagem do pet é obrigatório.</ErrorMessage>
-            )}
+            <p>Envie Imagem do pet</p>
+            <EnvyImg onSubmit={handleImg}>
+              <CustomInput type="file" />
+              <div>
+                <button type='button'>Enviar</button>
+                <p>{progressPorcent}%</p>
+              </div>
+            </EnvyImg>
           </SignUpInputContainer>
-
           <SignUpInputContainer>
             <p>Nome do Dono</p>
             <CustomInput
@@ -164,7 +202,7 @@ export const RegisterPet = () => {
               hasError={!!errors?.telephoneOwner}
               placeholder="Digite o número do telefone"
               {...register('telephoneOwner', {
-                required: true
+                required: true,
               })}
             />
 
@@ -172,7 +210,7 @@ export const RegisterPet = () => {
               <ErrorMessage>A Imagem do pet é obrigatório.</ErrorMessage>
             )}
           </SignUpInputContainer>
-          <CustomButton onClick={() => handleSubmit(handleSubmitPress)()}>
+          <CustomButton onClick={() => handleSubmit(uploadImg)()}>
             <Icon name="check" size={16} /> Cadastrar pet
           </CustomButton>
         </SignUpContent>

@@ -2,6 +2,7 @@ import { CustomInput } from '../CustomInput';
 import { CustomButton } from '../CustomButton';
 
 import {
+  EnvyImg,
   SignUpBack,
   SignUpContainer,
   SignUpContent,
@@ -17,6 +18,8 @@ import { useNavigate } from 'react-router-dom';
 import { Loading } from '../Loading';
 import { toast } from 'react-toastify';
 import { CustomSelect } from '../CustomSelect';
+import { storage } from '../../config/firebase.config';
+import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 
 interface PetsItemProps {
   data: Pets;
@@ -33,8 +36,8 @@ export const PetEditForm = ({ data }: PetsItemProps) => {
   const [breed, setBreed] = useState(data.breed);
   const [imageUrl, setImageUrl] = useState(data.imageUrl);
   const [telephoneOwner, setTelephoneOwner] = useState(data.telephoneOwner);
+  const [progressPorcent, setPorgessPorcent] = useState(0);
 
-  console.log(type);
 
   const handleHome = () => {
     navigate('/home');
@@ -59,9 +62,38 @@ export const PetEditForm = ({ data }: PetsItemProps) => {
       }, 2000);
     } catch {
       toast.error('hmm, parece que algo deu errado, tente novamente!');
-    } finally {
-      console.log('hmm');
     }
+  };
+
+  const handleImg = (event: any) => {
+    event.preventDefault();
+    const file = event.target[0]?.files[0];
+    console.log(file);
+    if (!file) return;
+
+    const storageRef = ref(
+      storage,
+      `images/${file.lastModified}${file.name}${file.lastModifiedDate}${file.size}`
+    );
+    const uploadTask = uploadBytesResumable(storageRef, file);
+
+    uploadTask.on(
+      'state_changed',
+      (snapshot) => {
+        const progress = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+        setPorgessPorcent(progress);
+      },
+      (error) => {
+        alert(error);
+      },
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          setImageUrl(downloadURL);
+        });
+      }
+    );
   };
 
   return (
@@ -108,11 +140,14 @@ export const PetEditForm = ({ data }: PetsItemProps) => {
           </SignUpInputContainer>
 
           <SignUpInputContainer>
-            <p>URL da imagem do Pet</p>
-            <CustomInput
-              value={imageUrl}
-              onChange={(event) => setImageUrl(event.target.value)}
-            />
+            <p>Envie Imagem do pet</p>
+            <EnvyImg onSubmit={handleImg}>
+              <CustomInput type="file" />
+              <div>
+                <button type='button'>Enviar</button>
+                <p>{progressPorcent}%</p>
+              </div>
+            </EnvyImg>
           </SignUpInputContainer>
 
           <SignUpInputContainer>

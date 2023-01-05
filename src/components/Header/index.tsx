@@ -12,11 +12,15 @@ export function Header () {
     navigate('/registerPet');
   };
 
+  const handleHome = () => {
+    navigate('/home');
+  };
+
   return (
     <ContainerHeader>
       <ContentHeader>
         <Details>
-          <h1>PetShop</h1>
+          <button type='button' onClick={handleHome}>PetShop</button>
           <button type='button' onClick={() => signOut(auth)}>
             Sair <Icon name='x'  size={18}/>
           </button>

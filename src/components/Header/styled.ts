@@ -37,7 +37,8 @@ export const ContentHeader = styled.div`
 `;
 
 export const Details = styled.div`
- > h1 {
+ > button {
+    background: transparent;
     font-size: 3rem;
     color: ${Colors.text.white};
   }

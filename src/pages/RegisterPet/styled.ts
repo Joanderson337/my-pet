@@ -13,12 +13,12 @@ export const SignUpContainer = styled.div`
 `;
 
 export const SignUpBack = styled.button`
-    font-size: 1.3rem;
-    font-weight: 600;
-    background: transparent;
-    display: flex;
-    align-items: center;
-    gap: 2px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  gap: 2px;
 `;
 
 export const SignUpHeadline = styled.p`
@@ -47,18 +47,17 @@ export const SignUpContent = styled.div`
   align-items: center;
   width: 450px;
 
-
   @media (max-width: 1440px) {
     margin-top: 100px;
   }
 
-    >img{
-      margin-top: 190px;
-      width: 80px;
-    }
+  > img {
+    margin-top: 190px;
+    width: 80px;
+  }
 
-    @media (max-width: 400px) {
-      >img{
+  @media (max-width: 400px) {
+    > img {
       margin-top: 500px;
     }
   }
@@ -73,6 +72,24 @@ export const SignUpInputContainer = styled.div`
   }
   p:nth-child(1) {
     font-weight: 600;
-    margin-bottom: 5px;
+    margin-bottom: 0.5rem;
+  }
+`;
+
+export const EnvyImg = styled.form`
+  > div {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+    align-items: center;
+    text-align: center;
+
+    button {
+      background-color: ${Colors.input.background};
+      box-shadow: 0rem 0.4rem 0.4rem rgba(0, 0, 0, 0.25);
+      border-radius: 1rem;
+      padding: 0.5rem 1rem 0.5rem 1rem;
+      color: ${Colors.text.dark};
+    }
   }
 `;

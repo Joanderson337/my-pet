@@ -55,3 +55,21 @@ export const SignUpInputContainer = styled.div`
     margin-bottom: 5px;
   }
 `;
+
+export const EnvyImg = styled.form`
+  > div {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+    align-items: center;
+    text-align: center;
+
+    button {
+      background-color: ${Colors.input.background};
+      box-shadow: 0rem 0.4rem 0.4rem rgba(0, 0, 0, 0.25);
+      border-radius: 1rem;
+      padding: 0.5rem 1rem 0.5rem 1rem;
+      color: ${Colors.text.dark};
+    }
+  }
+`;
