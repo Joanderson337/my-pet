@@ -190,7 +190,7 @@ export const PetEditForm = ({ data }: PetsItemProps) => {
             <CustomInput
               type="number"
               value={telephoneOwner}
-              placeholder="Digite o telefone para contato"
+              placeholder="(81) 99143-2425"
               onChange={(event) => setTelephoneOwner(event.target.value)}
             />
           </EditInputContainer>

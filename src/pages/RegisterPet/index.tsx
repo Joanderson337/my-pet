@@ -190,7 +190,7 @@ export const RegisterPet = () => {
             <p>Telefone para contato</p>
             <CustomInput
               hasError={!!errors?.telephoneOwner}
-              placeholder="Digite o número do telefone"
+              placeholder="(81) 99143-2425"
               {...register('telephoneOwner', {
                 required: true,
               })}
