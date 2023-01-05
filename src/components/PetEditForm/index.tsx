@@ -2,12 +2,12 @@ import { CustomInput } from '../CustomInput';
 import { CustomButton } from '../CustomButton';
 
 import {
-  EnvyImg,
-  SignUpBack,
-  SignUpContainer,
-  SignUpContent,
-  SignUpHeadline,
-  SignUpInputContainer,
+  EnvyImgEdit,
+  EditBack,
+  EditContainer,
+  EditContent,
+  EditHeadline,
+  EditInputContainer,
 } from './styled';
 
 import { Icon } from '../../assets/Icon';
@@ -20,6 +20,7 @@ import { toast } from 'react-toastify';
 import { CustomSelect } from '../CustomSelect';
 import { storage } from '../../config/firebase.config';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
+import { CustomBreed } from '../CustomBreed';
 
 interface PetsItemProps {
   data: Pets;
@@ -99,80 +100,79 @@ export const PetEditForm = ({ data }: PetsItemProps) => {
   return (
     <>
       {isLoading && <Loading />}
-      <SignUpContainer>
-        <SignUpContent>
-          <SignUpHeadline>
+      <EditContainer>
+        <EditContent>
+          <EditHeadline>
             Atualizar dados do Pet: {data.name}
-            <SignUpBack onClick={handleHome}>
+            <EditBack onClick={handleHome}>
               <Icon name="back" size={12} />
               Voltar
-            </SignUpBack>
-          </SignUpHeadline>
+            </EditBack>
+          </EditHeadline>
 
-          <SignUpInputContainer>
+          <EditInputContainer>
             <p>Nome</p>
             <CustomInput
               value={name}
+              placeholder="Digite o nome do seu pet"
               onChange={(event) => setName(event.target.value)}
             />
-          </SignUpInputContainer>
+          </EditInputContainer>
 
-          <SignUpInputContainer>
+          <EditInputContainer>
             <p>Idade</p>
             <CustomInput
               value={age}
               type="number"
+              placeholder="Digite a idade do seu pet"
               onChange={(event) => setAge(event.target.value)}
             />
-          </SignUpInputContainer>
+          </EditInputContainer>
 
-          <SignUpInputContainer>
+          <EditInputContainer>
             <p>Seu Pet é um: </p>
             <CustomSelect setValue={setType} value={type} />
-          </SignUpInputContainer>
+          </EditInputContainer>
 
-          <SignUpInputContainer>
+          <EditInputContainer>
             <p>Raça</p>
-            <CustomInput
-              value={breed}
-              onChange={(event) => setBreed(event.target.value)}
-            />
-          </SignUpInputContainer>
+            <CustomBreed setValue={setBreed} value={breed} type={String(type)} />
+          </EditInputContainer>
 
-          <SignUpInputContainer>
+          <EditInputContainer>
             <p>Envie Imagem do pet</p>
-            <EnvyImg onSubmit={handleImg}>
-              <CustomInput type="file" />
+            <EnvyImgEdit onSubmit={handleImg}>
+              <CustomInput accept=".jpeg,.png, .jpg" type="file" />
               <div>
-                <button type='button'>Enviar</button>
+                <button>Enviar</button>
                 <p>{progressPorcent}%</p>
               </div>
-            </EnvyImg>
-          </SignUpInputContainer>
+            </EnvyImgEdit >
+          </EditInputContainer>
 
-          <SignUpInputContainer>
+          <EditInputContainer>
             <p>Nome do Dono</p>
             <CustomInput
               value={nameOwner}
               onChange={(event) => setNameOwner(event.target.value)}
             />
-          </SignUpInputContainer>
+          </EditInputContainer>
 
-          <SignUpInputContainer>
+          <EditInputContainer>
             <p>Telefone para contato</p>
             <CustomInput
               type="number"
               value={telephoneOwner}
               onChange={(event) => setTelephoneOwner(event.target.value)}
             />
-          </SignUpInputContainer>
+          </EditInputContainer>
 
           <CustomButton onClick={handleUpdate}>
             <Icon name="check" size={16} />
             Atualizar
           </CustomButton>
-        </SignUpContent>
-      </SignUpContainer>
+        </EditContent>
+      </EditContainer>
     </>
   );
 };

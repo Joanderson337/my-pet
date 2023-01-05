@@ -21,12 +21,12 @@ import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { Icon } from '../../assets/Icon';
 import { ref, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
+import { CustomSelect } from '../../components/CustomSelect';
+import { CustomBreed } from '../../components/CustomBreed';
 
 interface SignUpForm {
   name: string;
-  type: string;
   age: string;
-  breed: string;
   nameOwner: string;
   telephoneOwner: string;
 }
@@ -41,6 +41,8 @@ export const RegisterPet = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [imgURL, setImgURL] = useState('');
   const [progressPorcent, setPorgessPorcent] = useState(0);
+  const [type, setType] = useState('gato');
+  const [breed, setBreed] = useState('');
 
   const navigate = useNavigate();
   const handleHome = () => {
@@ -54,8 +56,8 @@ export const RegisterPet = () => {
       await addDoc(collection(db, 'petshop'), {
         name: data.name,
         age: data.age,
-        type: data.type,
-        breed: data.breed,
+        type: type,
+        breed: breed,
         imageUrl: imgURL,
         nameOwner: data.nameOwner,
         telephoneOwner: data.telephoneOwner,
@@ -71,12 +73,12 @@ export const RegisterPet = () => {
   const handleImg = (event: any) => {
     event.preventDefault();
     const file = event.target[0]?.files[0];
-    console.log(file);
     if (!file) return;
+    const timeElapsed = Date.now();
 
     const storageRef = ref(
       storage,
-      `images/${file.lastModified}${file.name}${file.lastModifiedDate}${file.size}`
+      `images/${file.name}${timeElapsed}`
     );
     const uploadTask = uploadBytesResumable(storageRef, file);
 
@@ -100,10 +102,13 @@ export const RegisterPet = () => {
   };
 
   const uploadImg = () => {
-    if (imgURL !== '') {
-      handleSubmit(handleSubmitPress)();
-    } else {
+    if (imgURL === '' ) {
       toast.error('realize o envio da imagem');
+    } else if ( breed === '') {
+      toast.error('selecione a raça do pet');
+    }
+    else  {
+      handleSubmit(handleSubmitPress)();
     }
   };
 
@@ -122,7 +127,7 @@ export const RegisterPet = () => {
           </SignUpHeadline>
 
           <SignUpInputContainer>
-            <p>Nome do Pet</p>
+            <p>Nome</p>
             <CustomInput
               hasError={!!errors?.name}
               placeholder="Digite o nome do seu pet"
@@ -135,7 +140,7 @@ export const RegisterPet = () => {
           </SignUpInputContainer>
 
           <SignUpInputContainer>
-            <p>Idade do Pet</p>
+            <p>Idade</p>
             <CustomInput
               hasError={!!errors?.age}
               type="Number"
@@ -150,38 +155,23 @@ export const RegisterPet = () => {
 
           <SignUpInputContainer>
             <p>Seu Pet é um: </p>
-            <CustomInput
-              hasError={!!errors?.type}
-              placeholder="Cachorro ou Gato"
-              {...register('type', { required: true })}
-            />
-
-            {errors?.type?.type === 'required' && (
-              <ErrorMessage>o tipo do pet é obrigatório.</ErrorMessage>
-            )}
+            <CustomSelect setValue={setType} value={type} />
           </SignUpInputContainer>
 
           <SignUpInputContainer>
-            <p>Raça do Pet</p>
-            <CustomInput
-              hasError={!!errors?.breed}
-              placeholder="Digite a raça do seu pet"
-              {...register('breed', { required: true })}
-            />
-            {errors?.breed?.type === 'required' && (
-              <ErrorMessage>A Raça do pet é obrigatório.</ErrorMessage>
-            )}
+            <p>Raça</p>
+            <CustomBreed setValue={setBreed} value={breed} type={String(type)} />
           </SignUpInputContainer>
 
           <SignUpInputContainer>
-            <p>Envie Imagem do pet</p>
-            <EnvyImg onSubmit={handleImg}>
-              <CustomInput type="file" />
+            <p>Envie Imagem do seu pet</p>
+            <EnvyImg  onSubmit={handleImg}>
+              <CustomInput accept=".jpeg,.png, .jpg"  type="file" />
               <div>
-                <button type='button'>Enviar</button>
+                <button>Enviar</button>
                 <p>{progressPorcent}%</p>
               </div>
-            </EnvyImg>
+            </EnvyImg >
           </SignUpInputContainer>
           <SignUpInputContainer>
             <p>Nome do Dono</p>

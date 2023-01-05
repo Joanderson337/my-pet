@@ -79,7 +79,7 @@ export const SignUpInputContainer = styled.div`
 export const EnvyImg = styled.form`
   > div {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     margin-top: 10px;
     align-items: center;
     text-align: center;

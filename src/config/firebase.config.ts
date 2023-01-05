@@ -4,12 +4,12 @@ import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 import {getStorage} from 'firebase/storage';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyA_QQXOEL_RA2wXubjuwV3YHswaeqhd2qI',
-  authDomain: 'pet-hotel-accd3.firebaseapp.com',
-  projectId: 'pet-hotel-accd3',
-  storageBucket: 'pet-hotel-accd3.appspot.com',
-  messagingSenderId: '432571266153',
-  appId: '1:432571266153:web:d32b0fb98ce31ccffddef8'
+  apiKey: 'AIzaSyCIJc1f_-Kuix0oj0-gZDAvz6pqIyvUhXI',
+  authDomain: 'pettest-fbf71.firebaseapp.com',
+  projectId: 'pettest-fbf71',
+  storageBucket: 'pettest-fbf71.appspot.com',
+  messagingSenderId: '117266355612',
+  appId: '1:117266355612:web:248974e6a435dbe985e459'
 };
 
 export const app = initializeApp(firebaseConfig);

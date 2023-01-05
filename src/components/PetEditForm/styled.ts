@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 import Colors from '../../styles/theme';
 
-export const SignUpContainer = styled.div`
+export const EditContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
-export const SignUpBack = styled.button`
+export const EditBack = styled.button`
     font-size: 1.3rem;
     font-weight: 600;
     background: transparent;
@@ -16,7 +16,7 @@ export const SignUpBack = styled.button`
     gap: 2px;
 `;
 
-export const SignUpHeadline = styled.p`
+export const EditHeadline = styled.p`
   display: flex;
   justify-content: space-between;
 
@@ -36,14 +36,14 @@ export const SignUpHeadline = styled.p`
   margin-top: 20px;
 `;
 
-export const SignUpContent = styled.div`
+export const EditContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 450px;
 `;
 
-export const SignUpInputContainer = styled.div`
+export const EditInputContainer = styled.div`
   width: 100%;
   margin-bottom: 20px;
 
@@ -56,10 +56,10 @@ export const SignUpInputContainer = styled.div`
   }
 `;
 
-export const EnvyImg = styled.form`
+export const EnvyImgEdit = styled.form`
   > div {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     margin-top: 10px;
     align-items: center;
     text-align: center;

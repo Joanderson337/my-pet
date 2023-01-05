@@ -166,22 +166,6 @@ export const PetsContextProvider = ({ children }: IPetsContextProvider) => {
     [db, pets]
   );
 
-  // const query = useCallback(
-  //   async (id: string ) => {
-  //     try {
-  //       setIsLoading(true);
-  //       const userDoc = doc(db, 'petshop', id);
-  //       const pega = await where('id', '==', userDoc);
-
-  //     } catch (error) {
-  //       toast.error('algo aconteceu, tente novamente!');
-  //     } finally {
-  //       setIsLoading(false);
-  //     }
-  //   },
-  //   [db, pets]
-  // );
-
   return (
     <PetsContext.Provider
       value={{
