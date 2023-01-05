@@ -54,6 +54,10 @@ export function Login() {
     navigate('/signUp');
   };
 
+  function saveDataUser(nameUser: string | any) {
+    sessionStorage.setItem('nameUser', nameUser);
+  }
+
   const handleSubmitPress = async (data: LoginForm) => {
     try {
       setIsLoading(true);
@@ -64,7 +68,8 @@ export function Login() {
         data.password
       );
 
-      console.log({ userCredentials });
+      const nameUser = userCredentials.user.email;
+      saveDataUser(nameUser);
     } catch (error) {
       toast.error('algo deu errado, tente novamente!');
       const _error = error as AuthError;
@@ -86,6 +91,9 @@ export function Login() {
       setIsLoading(true);
 
       const userCredentials = await signInWithPopup(auth, googleProvider);
+
+      const nameUser = userCredentials.user.displayName;
+      saveDataUser(nameUser);
 
       const querySnapshot = await getDocs(
         query(

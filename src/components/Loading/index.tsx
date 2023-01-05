@@ -5,11 +5,11 @@ interface ILoading {
   message?: string
 }
 
-export const Loading = ({ message }: ILoading) => {
+export function Loading  ({ message }: ILoading) {
   return (
     <LoadingContainer>
       {message && <p>{message}</p>}
       <PacmanLoader size={80} color={'#836FFF'}/>
     </LoadingContainer>
   );
-};
+}

@@ -23,7 +23,7 @@ import { Icon } from '../../assets/Icon';
 
 interface SignUpForm {
   name: string;
-  type: 'gato' | 'cachorro';
+  type: string;
   age: string;
   breed: string;
   imageUrl: string;
@@ -39,7 +39,6 @@ export const RegisterPet = () => {
   } = useForm<SignUpForm>();
 
   const [isLoading, setIsLoading] = useState(false);
-  const [telefone, setTelefone] = useState('');
 
   const navigate = useNavigate();
   const handleHome = () => {
@@ -76,9 +75,8 @@ export const RegisterPet = () => {
           <SignUpHeadline>
             Cadastre seu Pet
             <SignUpBack onClick={handleHome}>
-              {' '}
               <Icon name="back" size={12} />
-              Voltar{' '}
+              Voltar
             </SignUpBack>
           </SignUpHeadline>
 
@@ -129,7 +127,6 @@ export const RegisterPet = () => {
               placeholder="Digite a raça do seu pet"
               {...register('breed', { required: true })}
             />
-
             {errors?.breed?.type === 'required' && (
               <ErrorMessage>A Raça do pet é obrigatório.</ErrorMessage>
             )}
@@ -166,7 +163,6 @@ export const RegisterPet = () => {
             <CustomInput
               hasError={!!errors?.telephoneOwner}
               placeholder="Digite o número do telefone"
-              value={telefone}
               {...register('telephoneOwner', {
                 required: true
               })}

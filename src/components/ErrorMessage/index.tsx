@@ -5,10 +5,10 @@ interface ErrorMessageProps {
   children: ReactNode
 }
 
-export const ErrorMessage = ({ children }: ErrorMessageProps) => {
+export function ErrorMessage({ children }: ErrorMessageProps)  {
   return (
     <>
       <InputErrorMessageContainer>{children}</InputErrorMessageContainer>
     </>
   );
-};
+}

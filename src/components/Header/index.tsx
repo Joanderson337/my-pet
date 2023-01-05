@@ -17,11 +17,9 @@ export function Header () {
       <ContentHeader>
         <Details>
           <h1>PetShop</h1>
-
           <button type='button' onClick={() => signOut(auth)}>
             Sair <Icon name='x'  size={18}/>
           </button>
-
         </Details>
         <img src={logo} alt="logo" />
         <Cadastro onClick={handleCadastro}>Cadastrar Pet</Cadastro>

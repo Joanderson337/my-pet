@@ -1,7 +1,7 @@
 interface Pets {
   id: string
   name: string
-  type: 'gato' | 'cachorro',
+  type: string,
   age: string
   breed: string
   imageUrl: string
