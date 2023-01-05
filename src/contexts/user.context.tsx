@@ -9,7 +9,7 @@ interface IUserContext {
   logoutUser: () => void
 }
 
-interface Iteste {
+interface IUserContextProvider  {
   children: ReactNode
 }
 
@@ -20,7 +20,7 @@ export const UserContext = createContext<IUserContext>({
   logoutUser: () => {}
 });
 
-export const UserContextProvider = ({ children }: Iteste) => {
+export const UserContextProvider = ({ children }: IUserContextProvider) => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
 
   const isAuthenticated = currentUser !== null;

@@ -24,7 +24,7 @@ import { Icon } from '../../assets/Icon';
 interface SignUpForm {
   name: string;
   type: 'gato' | 'cachorro';
-  age: number;
+  age: string;
   breed: string;
   imageUrl: string;
   nameOwner: string;

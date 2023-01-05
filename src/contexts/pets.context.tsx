@@ -15,8 +15,9 @@ interface IPetsContext {
   pets: Pets[];
   isLoading: boolean;
   deletePet: (id: string) => void;
-  editPet: (id: string) => void
+  paramsPet: (id: string) => void
   FilterPet: (type: string) => void
+  updatePet:  (id: string, name: string, nameOwner: string, age: string) => void
   getPet:  () => Promise<void>
 }
 
@@ -28,8 +29,9 @@ export const PetsContext = createContext<IPetsContext>({
   pets: [],
   isLoading: false,
   deletePet: () => Promise.resolve(),
-  editPet: () => Promise.resolve(),
+  paramsPet: () => {},
   getPet: () => Promise.resolve(),
+  updatePet: () => Promise.resolve(),
   FilterPet: () => Promise.resolve()
 });
 
@@ -89,7 +91,7 @@ export const PetsContextProvider = ({ children }: IPetsContextProvider) => {
   );
 
 
-  const editPet = useCallback(
+  const paramsPet = useCallback(
     async (id: string) => {
       try {
         setIsLoading(true);
@@ -106,11 +108,11 @@ export const PetsContextProvider = ({ children }: IPetsContextProvider) => {
 
 
   const updatePet = useCallback(
-    async (id: string, age: any) => {
+    async (id: string, name: string, nameOwner: string, age: string) => {
       try {
         setIsLoading(true);
         const userDoc = doc(db, 'petshop', id);
-        const newFields = { age: age  };
+        const newFields = { name: name, nameOwner: nameOwner, age: age};
         await updateDoc(userDoc, newFields);
       } catch (error) {
         toast.error('algo aconteceu, tente novamente!');
@@ -154,11 +156,16 @@ export const PetsContextProvider = ({ children }: IPetsContextProvider) => {
   //   [db, pets]
   // );
 
-
-
-
   return (
-    <PetsContext.Provider value={{ pets, isLoading, deletePet , FilterPet, editPet, getPet}}>
+    <PetsContext.Provider value={{
+      pets,
+      isLoading,
+      deletePet ,
+      FilterPet,
+      paramsPet,
+      getPet ,
+      updatePet
+    }}>
       {children}
     </PetsContext.Provider>
   );

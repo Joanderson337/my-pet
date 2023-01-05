@@ -2,8 +2,7 @@ import { FunctionComponent, useEffect} from 'react';
 
 import { PetsContext } from '../../contexts/pets.context';
 import { useContext } from 'react';
-import { PetItem } from '../PetItem';
-import { Loading } from '../Loading';
+import { PetEditCard } from '../PetEditCard';
 
 interface PetEditProps {
   petId: string
@@ -12,22 +11,21 @@ interface PetEditProps {
 export const PetEdit: FunctionComponent<PetEditProps> = ({
   petId
 }) => {
-  const { editPet, pets } = useContext(PetsContext);
+  const { paramsPet, pets } = useContext(PetsContext);
 
   console.log(petId);
   useEffect(() => {
-    editPet(petId);
-  }, [editPet]);
-
-
+    paramsPet(petId);
+  }, [paramsPet]);
 
   return (
     <>
       {pets.map((pet) => (
         <div key={pet.id}>
-          <PetItem data={pet} />
+          <PetEditCard data={pet} />
         </div>
       ))}
+
     </>
   );
 };

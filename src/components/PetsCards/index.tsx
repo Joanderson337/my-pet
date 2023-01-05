@@ -1,10 +1,10 @@
 import { useContext, useEffect } from 'react';
 import { PetsContext } from '../../contexts/pets.context';
-import { PetItem } from '../PetItem';
+import { PetInfoCard } from '../PetInfoCard';
 import { Loading } from '../Loading';
 import { ContainerPets, ContentPets } from './styled';
 
-export function Pets () {
+export function PetsCards () {
   const { isLoading, pets, getPet } = useContext(PetsContext);
 
   useEffect(() => {
@@ -17,7 +17,7 @@ export function Pets () {
       <ContentPets>
         {pets.map((pet) => (
           <div key={pet.id}>
-            <PetItem data={pet} />
+            <PetInfoCard data={pet} />
           </div>
         ))}
       </ContentPets>
