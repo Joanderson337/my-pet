@@ -6,7 +6,7 @@ import { ContainerHome, ContainerPets, ContentPets } from './styled';
 
 export function PetsCards () {
   const { isLoading, pets, getPet } = useContext(PetsContext);
-  const nameUser = sessionStorage.getItem('nameUser');
+  const nameUser = localStorage.getItem('nameUser');
 
   useEffect(() => {
     getPet();

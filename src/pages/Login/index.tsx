@@ -55,7 +55,7 @@ export function Login() {
   };
 
   function saveDataUser(nameUser: string | any) {
-    sessionStorage.setItem('nameUser', nameUser);
+    localStorage.setItem('nameUser', nameUser);
   }
 
   const handleSubmitPress = async (data: LoginForm) => {
