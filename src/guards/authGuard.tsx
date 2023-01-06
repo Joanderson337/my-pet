@@ -6,7 +6,7 @@ import { UserContext } from '../contexts/user.context';
 import { Loading } from '../components/Loading';
 
 interface IAuthenticationGuard {
-  children: ReactNode
+  children: ReactNode;
 }
 
 export const AuthenticationGuard = ({ children }: IAuthenticationGuard) => {

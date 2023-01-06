@@ -1,12 +1,12 @@
 import { SelectHTMLAttributes } from 'react';
 import { CustomSelectContainer } from './styled';
 
-interface CustomSelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
+interface ICustomSelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   value: string;
   setValue: (value: string) => void;
 }
 
-export function CustomSelect({ value, setValue }: CustomSelectProps) {
+export function CustomSelect({ value, setValue }: ICustomSelectProps) {
   return (
     <>
       <CustomSelectContainer
@@ -16,7 +16,6 @@ export function CustomSelect({ value, setValue }: CustomSelectProps) {
         <option value="gato">Gato</option>
         <option value="cachorro">Cachorro</option>
       </CustomSelectContainer>
-
     </>
   );
 }

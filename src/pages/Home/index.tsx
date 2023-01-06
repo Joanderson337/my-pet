@@ -4,7 +4,7 @@ import { Header } from '../../components/Header';
 import { PetsCards } from '../../components/PetsCards';
 import { UserContext } from '../../contexts/user.context';
 
-export function Home () {
+export function Home() {
   const navigate = useNavigate();
   const { isAuthenticated } = useContext(UserContext);
 

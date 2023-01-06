@@ -22,7 +22,6 @@ interface IPetsContext {
   isLoading: boolean;
   deletePet: (id: string) => void;
   paramsPet: (id: string) => void;
-  FilterPet: (type: string) => void;
   updatePet: (
     id: string,
     name: string,
@@ -47,7 +46,6 @@ export const PetsContext = createContext<IPetsContext>({
   paramsPet: () => {},
   getPet: () => Promise.resolve(),
   updatePet: () => Promise.resolve(),
-  FilterPet: () => Promise.resolve(),
 });
 
 export const PetsContextProvider = ({ children }: IPetsContextProvider) => {
@@ -150,29 +148,12 @@ export const PetsContextProvider = ({ children }: IPetsContextProvider) => {
     [db, pets]
   );
 
-  const FilterPet = useCallback(
-    async (type: string) => {
-      try {
-        setIsLoading(true);
-        const newPetsFilter = pets.filter((pet) => pet.type === type);
-        setPets(newPetsFilter);
-        toast.success('sucesso');
-      } catch (error) {
-        toast.error('algo aconteceu, tente novamente!');
-      } finally {
-        setIsLoading(false);
-      }
-    },
-    [db, pets]
-  );
-
   return (
     <PetsContext.Provider
       value={{
         pets,
         isLoading,
         deletePet,
-        FilterPet,
         paramsPet,
         getPet,
         updatePet,

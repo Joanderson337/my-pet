@@ -5,7 +5,7 @@ import logo from '../../assets/Icon/image/animal-dog.gif';
 import { useNavigate } from 'react-router-dom';
 import { Icon } from '../../assets/Icon';
 
-export function Header () {
+export function Header() {
   const navigate = useNavigate();
 
   const handleCadastro = () => {
@@ -20,9 +20,11 @@ export function Header () {
     <ContainerHeader>
       <ContentHeader>
         <Details>
-          <button type='button' onClick={handleHome}>PetShop</button>
-          <button type='button' onClick={() => signOut(auth)}>
-            Sair <Icon name='x'  size={18}/>
+          <button type="button" onClick={handleHome}>
+            PetShop
+          </button>
+          <button type="button" onClick={() => signOut(auth)}>
+            Sair <Icon name="x" size={18} />
           </button>
         </Details>
         <img src={logo} alt="logo" />

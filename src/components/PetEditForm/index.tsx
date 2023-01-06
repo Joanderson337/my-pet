@@ -22,11 +22,11 @@ import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { CustomBreed } from '../CustomBreed';
 import { toast } from 'react-toastify';
 
-interface PetsItemProps {
+interface IPetsFormProps {
   data: Pets;
 }
 
-export const PetEditForm = ({ data }: PetsItemProps) => {
+export const PetEditForm = ({ data }: IPetsFormProps) => {
   const navigate = useNavigate();
   const { updatePet } = useContext(PetsContext);
   const [isLoading, setIsLoading] = useState(false);
@@ -39,31 +39,29 @@ export const PetEditForm = ({ data }: PetsItemProps) => {
   const [telephoneOwner, setTelephoneOwner] = useState(data.telephoneOwner);
   const [progressPorcent, setPorgessPorcent] = useState(0);
 
-
   const handleHome = () => {
     navigate('/home');
   };
 
   const handlVerifiqued = () => {
-    if(name === ''){
+    if (name === '') {
       toast.error('Digite o nome do pet, por favor');
     }
-    if(age === ''){
+    if (age === '') {
       toast.error('Digite digite a idade, por favor');
     }
-    if(type === ''){
+    if (type === '') {
       toast.error('Selecione gato ou cachorro, por favor');
     }
-    if(breed === ''){
+    if (breed === '') {
       toast.error('Selecione a raça, por favor');
     }
-    if(nameOwner === ''){
+    if (nameOwner === '') {
       toast.error('Digite o nome do dono, por favor');
     }
-    if(telephoneOwner === ''){
+    if (telephoneOwner === '') {
       toast.error('Digite um telefone, por favor');
-    }
-    else {
+    } else {
       handleUpdate();
     }
   };
@@ -162,7 +160,11 @@ export const PetEditForm = ({ data }: PetsItemProps) => {
 
           <EditInputContainer>
             <p>Raça</p>
-            <CustomBreed setValue={setBreed} value={breed} type={String(type)} />
+            <CustomBreed
+              setValue={setBreed}
+              value={breed}
+              type={String(type)}
+            />
           </EditInputContainer>
 
           <EditInputContainer>
@@ -173,7 +175,7 @@ export const PetEditForm = ({ data }: PetsItemProps) => {
                 <button>Enviar</button>
                 <p>{progressPorcent}%</p>
               </div>
-            </EnvyImgEdit >
+            </EnvyImgEdit>
           </EditInputContainer>
 
           <EditInputContainer>

@@ -25,7 +25,8 @@ import { useNavigate } from 'react-router-dom';
 import { Loading } from '../../components/Loading';
 import { UserContext } from '../../contexts/user.context';
 import { Icon } from '../../assets/Icon';
-interface LoginForm {
+
+interface ILoginForm {
   email: string;
   password: string;
 }
@@ -36,7 +37,7 @@ export function Login() {
     setError,
     formState: { errors },
     handleSubmit,
-  } = useForm<LoginForm>();
+  } = useForm<ILoginForm>();
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -58,7 +59,7 @@ export function Login() {
     localStorage.setItem('nameUser', nameUser);
   }
 
-  const handleSubmitPress = async (data: LoginForm) => {
+  const handleSubmitPress = async (data: ILoginForm) => {
     try {
       setIsLoading(true);
 
@@ -130,10 +131,8 @@ export function Login() {
           <img src={logo} alt="" />
           <LoginHeadline>Entre com a sua conta</LoginHeadline>
 
-          <CustomButton
-            onClick={handleSignInWithGooglePress}
-          >
-            <Icon name='google' size={18}/> Entrar com o Google
+          <CustomButton onClick={handleSignInWithGooglePress}>
+            <Icon name="google" size={18} /> Entrar com o Google
           </CustomButton>
 
           <LoginSubtitle>ou entre com o seu e-mail</LoginSubtitle>
@@ -182,15 +181,12 @@ export function Login() {
             )}
           </LoginInputContainer>
 
-          <CustomButton
-            onClick={() => handleSubmit(handleSubmitPress)()}
-          >
-            <Icon name='login'size={16} />Entrar
+          <CustomButton onClick={() => handleSubmit(handleSubmitPress)()}>
+            <Icon name="login" size={16} />
+            Entrar
           </CustomButton>
-          <CustomButton
-            onClick={handleSignUp}
-          >
-            <Icon name='user' size={17}/>
+          <CustomButton onClick={handleSignUp}>
+            <Icon name="user" size={17} />
             Criar conta
           </CustomButton>
         </LoginContent>

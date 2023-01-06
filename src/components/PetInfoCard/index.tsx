@@ -6,11 +6,11 @@ import Pets from '../../models/pets.types';
 import { DeletePet, OwnerInfo, EditPet,  PetContainer, PetImage, PetInfo } from './styled';
 
 
-interface PetsItemProps {
+interface IPetsCardProps {
   data: Pets
 }
 
-export function PetInfoCard({ data } : PetsItemProps) {
+export function PetInfoCard({ data } : IPetsCardProps) {
 
   const { deletePet } = useContext(PetsContext);
 

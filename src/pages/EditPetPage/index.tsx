@@ -2,16 +2,15 @@ import { useParams } from 'react-router-dom';
 import { Header } from '../../components/Header';
 import { PetEdit } from '../../components/PetEdit';
 
-export function EditPetPage () {
-
+export function EditPetPage() {
   const { id } = useParams();
 
   if (!id) return null;
 
-  return(
+  return (
     <>
       <Header />
-      <PetEdit petId={id}/>
+      <PetEdit petId={id} />
     </>
   );
 }

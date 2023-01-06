@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import Colors from '../../styles/theme';
 
-type CustomInputContainerProps = {
+type ICustomInputContainerProps = {
   hasError?: boolean
 }
 
-export const CustomInputContainer = styled.input<CustomInputContainerProps>`
+export const CustomInputContainer = styled.input<ICustomInputContainerProps>`
   border: none;
   width: 100%;
   background-color: ${Colors.input.background};

@@ -4,7 +4,7 @@ import { PetInfoCard } from '../PetInfoCard';
 import { Loading } from '../Loading';
 import { ContainerHome, ContainerPets, ContentPets } from './styled';
 
-export function PetsCards () {
+export function PetsCards() {
   const { isLoading, pets, getPet } = useContext(PetsContext);
   const nameUser = localStorage.getItem('nameUser');
 

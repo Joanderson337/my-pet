@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import Colors from '../../styles/theme';
 
 export const ContainerHeader = styled.header`
-  background: #6a5acd;
+  background: ${Colors.background.violet};
 
   display: flex;
   justify-content: center;

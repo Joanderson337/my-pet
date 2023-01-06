@@ -1,13 +1,13 @@
 import { SelectHTMLAttributes } from 'react';
 import { CustomSelectContainer } from './styled';
 
-interface CustomBreedProps extends SelectHTMLAttributes<HTMLSelectElement> {
+interface ICustomBreedProps extends SelectHTMLAttributes<HTMLSelectElement> {
   value: string;
   setValue: (value: string) => void;
-  type: string
+  type: string;
 }
 
-export function CustomBreed({ value, setValue, type }: CustomBreedProps) {
+export function CustomBreed({ value, setValue, type }: ICustomBreedProps) {
   return (
     <>
       {type === 'gato' ? (

@@ -5,7 +5,7 @@ const Colors = {
     dark: '#343A40'
   },
   background: {
-    dark: '#836FFF',
+    violet: '#836FFF',
     white: '#F8F9FA'
   },
   input: {

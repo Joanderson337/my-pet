@@ -24,7 +24,7 @@ import { CustomSelect } from '../../components/CustomSelect';
 import { CustomBreed } from '../../components/CustomBreed';
 import { Header } from '../../components/Header';
 
-interface SignUpForm {
+interface IRegisterForm {
   name: string;
   age: string;
   nameOwner: string;
@@ -36,7 +36,7 @@ export const RegisterPet = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<SignUpForm>();
+  } = useForm<IRegisterForm>();
 
   const [isLoading, setIsLoading] = useState(false);
   const [imgURL, setImgURL] = useState('');
@@ -49,7 +49,7 @@ export const RegisterPet = () => {
     navigate('/home');
   };
 
-  const handleSubmitPress = async (data: SignUpForm) => {
+  const handleSubmitPress = async (data: IRegisterForm) => {
     try {
       setIsLoading(true);
       toast.success('cadastrado com sucesso!');
@@ -76,10 +76,7 @@ export const RegisterPet = () => {
     if (!file) return;
     const timeElapsed = Date.now();
 
-    const storageRef = ref(
-      storage,
-      `images/${file.name}${timeElapsed}`
-    );
+    const storageRef = ref(storage, `images/${file.name}${timeElapsed}`);
     const uploadTask = uploadBytesResumable(storageRef, file);
 
     uploadTask.on(
@@ -102,12 +99,11 @@ export const RegisterPet = () => {
   };
 
   const uploadImg = () => {
-    if (imgURL === '' ) {
+    if (imgURL === '') {
       toast.error('realize o envio da imagem');
-    } else if ( breed === '') {
+    } else if (breed === '') {
       toast.error('selecione a raça do pet');
-    }
-    else  {
+    } else {
       handleSubmit(handleSubmitPress)();
     }
   };
@@ -160,18 +156,22 @@ export const RegisterPet = () => {
 
           <SignUpInputContainer>
             <p>Raça</p>
-            <CustomBreed setValue={setBreed} value={breed} type={String(type)} />
+            <CustomBreed
+              setValue={setBreed}
+              value={breed}
+              type={String(type)}
+            />
           </SignUpInputContainer>
 
           <SignUpInputContainer>
             <p>Envie Imagem do seu pet</p>
-            <EnvyImg  onSubmit={handleImg}>
-              <CustomInput accept=".jpeg,.png, .jpg"  type="file" />
+            <EnvyImg onSubmit={handleImg}>
+              <CustomInput accept=".jpeg,.png, .jpg" type="file" />
               <div>
                 <button>Enviar</button>
                 <p>{progressPorcent}%</p>
               </div>
-            </EnvyImg >
+            </EnvyImg>
           </SignUpInputContainer>
           <SignUpInputContainer>
             <p>Nome do Dono</p>

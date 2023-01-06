@@ -3,7 +3,7 @@ import Colors from '../../styles/theme';
 
 export const CustomButtonContainer = styled.button`
   width: 100%;
-  background-color: ${Colors.background.dark};
+  background-color: ${Colors.background.violet};
   color: ${Colors.text.white};
   display: flex;
   align-items: center;

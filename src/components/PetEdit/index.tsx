@@ -4,11 +4,11 @@ import { PetsContext } from '../../contexts/pets.context';
 import { useContext } from 'react';
 import { PetEditForm } from '../PetEditForm';
 
-interface PetEditProps {
+interface IPetEditProps {
   petId: string;
 }
 
-export function PetEdit({ petId }: PetEditProps) {
+export function PetEdit({ petId }: IPetEditProps) {
   const { paramsPet, pets } = useContext(PetsContext);
 
   useEffect(() => {

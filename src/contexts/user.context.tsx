@@ -3,21 +3,21 @@ import { createContext, ReactNode, useState } from 'react';
 import User from '../models/user.types';
 
 interface IUserContext {
-  currentUser: User | null
-  isAuthenticated: boolean
-  loginUser: (user: User) => void
-  logoutUser: () => void
+  currentUser: User | null;
+  isAuthenticated: boolean;
+  loginUser: (user: User) => void;
+  logoutUser: () => void;
 }
 
-interface IUserContextProvider  {
-  children: ReactNode
+interface IUserContextProvider {
+  children: ReactNode;
 }
 
 export const UserContext = createContext<IUserContext>({
   currentUser: null,
   isAuthenticated: false,
   loginUser: () => {},
-  logoutUser: () => {}
+  logoutUser: () => {},
 });
 
 export const UserContextProvider = ({ children }: IUserContextProvider) => {
@@ -35,7 +35,8 @@ export const UserContextProvider = ({ children }: IUserContextProvider) => {
 
   return (
     <UserContext.Provider
-      value={{ currentUser, isAuthenticated, loginUser, logoutUser }}>
+      value={{ currentUser, isAuthenticated, loginUser, logoutUser }}
+    >
       {children}
     </UserContext.Provider>
   );

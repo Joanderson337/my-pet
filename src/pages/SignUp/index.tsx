@@ -3,7 +3,7 @@ import validator from 'validator';
 import {
   AuthError,
   createUserWithEmailAndPassword,
-  AuthErrorCodes
+  AuthErrorCodes,
 } from 'firebase/auth';
 
 import { ErrorMessage } from '../../components/ErrorMessage';
@@ -15,7 +15,7 @@ import {
   SignUpContainer,
   SignUpContent,
   SignUpHeadline,
-  SignUpInputContainer
+  SignUpInputContainer,
 } from './styled';
 import { auth, db } from '../../config/firebase.config';
 import { addDoc, collection } from 'firebase/firestore';
@@ -27,11 +27,11 @@ import logo from '../../assets/Icon/image/animal-dog.gif';
 import { Icon } from '../../assets/Icon';
 
 interface SignUpForm {
-  fristName: string
-  lastName: string
-  email: string
-  password: string
-  passwordConfirmation: string
+  fristName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  passwordConfirmation: string;
 }
 
 export const SignUp = () => {
@@ -40,7 +40,7 @@ export const SignUp = () => {
     handleSubmit,
     watch,
     setError,
-    formState: { errors }
+    formState: { errors },
   } = useForm<SignUpForm>();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -74,7 +74,7 @@ export const SignUp = () => {
         id: userCredentials.user.uid,
         email: userCredentials.user.email,
         firstName: data.fristName,
-        lastName: data.lastName
+        lastName: data.lastName,
       });
     } catch (error) {
       const _error = error as AuthError;
@@ -95,7 +95,11 @@ export const SignUp = () => {
           <img src={logo} alt="" />
           <SignUpHeadline>
             Crie sua conta
-            <SignUpBack onClick={handleLogin}> <Icon name='back' size={12}/>Voltar </SignUpBack>
+            <SignUpBack onClick={handleLogin}>
+              {' '}
+              <Icon name="back" size={12} />
+              Voltar{' '}
+            </SignUpBack>
           </SignUpHeadline>
 
           <SignUpInputContainer>
@@ -133,7 +137,7 @@ export const SignUp = () => {
                 required: true,
                 validate: (value) => {
                   return validator.isEmail(value);
-                }
+                },
               })}
             />
 
@@ -181,7 +185,7 @@ export const SignUp = () => {
                 minLength: 8,
                 validate: (value) => {
                   return value === watchPassword;
-                }
+                },
               })}
             />
 
@@ -202,10 +206,8 @@ export const SignUp = () => {
             )}
           </SignUpInputContainer>
 
-          <CustomButton
-            onClick={() => handleSubmit(handleSubmitPress)()}
-          >
-            <Icon name='check' size={16}/>  Criar Conta
+          <CustomButton onClick={() => handleSubmit(handleSubmitPress)()}>
+            <Icon name="check" size={16} /> Criar Conta
           </CustomButton>
         </SignUpContent>
       </SignUpContainer>
